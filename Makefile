@@ -6,19 +6,19 @@
 #    By: kbelov <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 14:25:08 by kbelov            #+#    #+#              #
-#    Updated: 2019/10/07 19:09:58 by kbelov           ###   ########.fr        #
+#    Updated: 2019/10/10 22:01:51 by kbelov           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf
+NAME = libftprintf.a
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = main.c verify.c prepare.c fillit.c
+SRC = ft_printf.c second.c
 
-OBJ = main.o verify.o prepare.o fillit.o
+OBJ = ft_printf.o second.o
 
-HEADER = fillit.h
+HEADER = ft_printf.h
 
 all: $(NAME)
 
@@ -38,11 +38,14 @@ fclean: clean
 
 re: fclean all
 
-lldb:
-	gcc -g $(FLAG) $(SRC) libft/libft.a -o fillit_lldb
+test: lib
+	gcc $(FLAG) $(SRC) main.c libft/libft.a -o ft_printf_makefile
 
-test:
-	lldb fillit_lldb ../Fillit_backup/test/19.txt
+lldb:
+	gcc -g $(FLAG) $(SRC) main.c libft/libft.a -o ft_printf_lldb
+
+lldb_run:
+	lldb ft_printf_lldb "Hello World!"
 
 dev:
 	gcc $(FLAG) main.c verify.c prepare_dev_mode.c fillit_dev_mode.c libft/libft.a -o fillit_dev_mode #-fsanitize=address
