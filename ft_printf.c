@@ -6,65 +6,60 @@
 /*   By: kbelov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 14:23:16 by kbelov            #+#    #+#             */
-/*   Updated: 2019/10/10 22:24:23 by kbelov           ###   ########.fr       */
+/*   Updated: 2019/10/12 15:32:03 by kbelov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		reset_format(t_format *f)
+int			print_formated(t_format *f, void *arg)
 {
-	f->minus = 0;
-	f->plus = 0;
-	f->space = 0;
-	f->hash = 0;
-	f->null = 0;
-	f->number = 0;
-	f->width = 0;
-	f->precision = -1;
-	f->length = "a";
-	f->specifier = 'a';
-}
+	//char *type;
+	int		charcount;
 
-t_format	*parse_format(const char *restrict format)
-{
-	t_format *f;
-
-	f = NULL;
-	format = NULL;
-	return (f);
-}
-
-int			print_formated(va_list ap, const char *restrict format)
-{
-	int			charcount;
-	t_format	*f;
-
-	ap = NULL;
 	charcount = 0;
+	//write(1, "fuck\n", 6);
 	f = NULL;
-	reset_format(f);
-	parse_format(format);
+	//write(1, "fuck2\n", 7);
+	//reset_format(f);
+	//write(1, "fuck3\n", 7);
+	//type = detect_type(format, charcount);
+	//parse_format(format);
+	charcount += ft_putstr_len((char const *)arg);
 	return (charcount);
 }
 
 int			ft_printf(const char *restrict format, ...)
 {
-	va_list ap;
-	int		charcount;
+	va_list	ap;
+	size_t	charcount;	// counts printed characters
+	size_t	i;			// iterates within format string
+	t_format f;
 
+	//f = NULL;
 	charcount = 0;
+	i = 0;
 	va_start(ap, format);
-	while (*format != '\0')
+	while (format[i] != '\0')
 	{
-		if (*format != '%')
+		if (format[i] != '%' || (format[i] == '%' && format[i + 1] == '%'))
 		{
-			ft_putchar((char)*format);
+			ft_putchar((char)format[i]);
 			charcount++;
+			i++;
+			format[i] == '%' ? i++ : i;
 		}
 		else
-			charcount += print_formated(ap, format);
-		format++;
+		{
+			i = parse_format(&f, format, i);
+			if (!validate_format(&f))
+				return(charcount);
+			else
+			{
+				charcount += print_formated(&f, va_arg(ap, void *));
+				//i = validate_format(format, i);
+			}
+		}
 	}
 	va_end(ap);
 	return (charcount);
