@@ -16,14 +16,18 @@ size_t		parse_printf_format(const char *template, size_t n, int *argtypes)
 {
 */
 
-size_t	parse_format(t_format *f, const char *restrict format, size_t i)
+t_format	*parse_format(const char *format, va_list *ap, size_t *i)
 {
-	reset_format(f);
-	i = parse_flags(f, format, i);
-    i = parse_width(f, format, i);
-    i = parse_precision(f, format, i);
-    i = parse_length(f, format, i);
-	return(i);
+	t_format *f;
+    
+    f = malloc(sizeof(t_format));
+    reset_format(f);
+	parse_flags(f, format, i);
+    parse_width(f, format, i, ap);
+    parse_precision(f, format, i, ap);
+    parse_length(f, format, i);
+    parse_precision(f, format, i, ap);
+	return(f);
 }
 
 

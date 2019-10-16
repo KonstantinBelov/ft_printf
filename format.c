@@ -22,7 +22,7 @@ void		reset_format(t_format *f)
 	f->number = 0;
 	f->width = 0;
 	f->precision = -1;
-	f->length = "a";
+	f->length = 0;
 	f->specifier = 'a';
 }
 

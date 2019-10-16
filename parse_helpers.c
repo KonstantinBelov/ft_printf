@@ -12,66 +12,87 @@
 
 #include "ft_printf.h"
 
-int        parse_flags(t_format *f, const char *restrict format, size_t i)
+void        parse_flags(t_format *f, const char *restrict format, size_t *i)
 {
-    while (FLAGS(format[i]))
+    while (FLAGS(format[*i]))
     {    
-        if (format[i] == '-')
+        if (format[*i] == '-')
             f->minus = 1;
-        else if (format[i] == '+')
+        else if (format[*i] == '+')
             f->plus = 1;
-        else if (format[i] == ' ')
-            f->plus = 1;
-        else if (format[i] == '#')
-            f->plus = 1;
-        else if (format[i] == '0')
-            f->plus = 1;
-        i++;
+        else if (format[*i] == ' ')
+            f->space = 1;
+        else if (format[*i] == '#')
+            f->hash = 1;
+        else if (format[*i] == '0')
+            f->null = 1;
+        (*i)++;
     }
-    return(i);
 }
 
-int         parse_width(t_format *f, const char *restrict format, size_t i)
+void         parse_width(t_format *f, const char *format, size_t *i, va_list *ap)
 {
-    f->width = ft_atoi((const char *)(format + i));
-    while (format[i] >= '0' && format[i] <= '9')
-        i++;
-    return(i);
+	if (format[*i] == '*')
+	{
+		f->width = va_arg(*ap, int);
+		i++;
+	}
+    else if(ft_isdigit(format[*i]))
+        f->width = ft_atoi(format);
+    while (ft_isdigit(format[*i]))
+        (*i)++;
 }
 
-int         parse_precision(t_format *f, const char *restrict format, size_t i)
+void         parse_precision(t_format *f, const char *format, size_t *i, va_list *ap)
 {
-    if (format[i] == '.')
+    if (format[*i] == '.')
     {
         i++;
-        f->precision = ft_atoi((const char *)(format + i));
-        while (format[i] >= '0' && format[i] <= '9')
-            i++;
+        if (format[*i] == '*')
+	    {
+		    f->precision = va_arg(*ap, int);
+		    (*i)++;
+	    }
+        else if(ft_isdigit(format[*i]))
+            f->precision = ft_atoi(format);
+        while (ft_isdigit(format[*i]))
+            (*i)++;
     }
-    return(i);
 }
 
-int			parse_length(t_format *f, const char *restrict format, size_t i)
+void			parse_length(t_format *f, const char *format, size_t *i)
 {
-    if (format[i] == 'h' || format[i] == 'l')
+    if (format[*i] == 'h')
     {
-        f->length[0] = format[i];
-        i++;
+        if(format[*i + 1] == 'h')
+            f->length = 2;
+        else
+            f->length = 1;
     }
-    if (format[i] == 'h' || format[i] == 'l')
+    else if (format[*i] == 'l')
     {
-        f->length[1] = format[i];
-        i++;
+        if(format[*i + 1] == 'l')
+            f->length = 4;
+        else
+            f->length = 3;
     }
-    return(i);
+    else if (format[*i] == 'L')
+        f->length = 5;
+    else if (format[*i] == 'j')
+        f->length = 7;
+    else if (format[*i] == 'z')
+        f->length = 9;
+    if ((f->length % 2 == 1) && f->length)
+        (*i)++;
+    if ((f->length % 2 == 0) && f->length)
+        (*i) += 2;
 }
 
-int			parse_type(t_format *f, const char *restrict format, size_t i)
+void			parse_type(t_format *f, const char *format, size_t *i)
 {
-    if (TYPE(format[i]))
+    if (TYPE(format[*i]))
     {
-        f->specifier = format[i];
-        i++;
+        f->specifier = format[*i];
+        (*i)++;
     }
-    return (i);
 }

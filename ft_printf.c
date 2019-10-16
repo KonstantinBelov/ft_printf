@@ -12,34 +12,50 @@
 
 #include "ft_printf.h"
 
-int			print_formated(t_format *f, void *arg)
+int			print_formated(t_format *f, va_list *ap)
 {
-	//char *type;
-	int		charcount;
+	int			charcount;
 
 	charcount = 0;
-	//write(1, "fuck\n", 6);
 	f = NULL;
-	//write(1, "fuck2\n", 7);
-	//reset_format(f);
-	//write(1, "fuck3\n", 7);
-	//type = detect_type(format, charcount);
-	//parse_format(format);
-	charcount += ft_putstr_len((char const *)arg);
+	ap = NULL;
+	//charcount += ft_putstr_len((char const *)arg);
 	return (charcount);
 }
 
-int			ft_printf(const char *restrict format, ...)
+int			print_ap(const char *format, va_list *ap)
 {
-	va_list	ap;
-	size_t	charcount;	// counts printed characters
-	size_t	i;			// iterates within format string
-	t_format f;
+	t_format	*f;
+	int			charcount;
+	size_t		i;
 
-	//f = NULL;
 	charcount = 0;
 	i = 0;
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			f = parse_format(format, ap, &i);
+			charcount += print_formated(f, ap);
+		}
+		else
+		{
+			ft_putchar(format[i]);
+			charcount++; 
+		}
+		i++;
+	}
+	return(charcount);
+}
+
+int			ft_printf(const char *format, ...)
+{
+	va_list		ap;
+	int			charcount;	// counts printed characters
+
+	charcount = 0;
 	va_start(ap, format);
+/*	
 	while (format[i] != '\0')
 	{
 		if (format[i] != '%' || (format[i] == '%' && format[i + 1] == '%'))
@@ -49,18 +65,14 @@ int			ft_printf(const char *restrict format, ...)
 			i++;
 			format[i] == '%' ? i++ : i;
 		}
-		else
+		else if (format[i] == '%')
 		{
-			i = parse_format(&f, format, i);
-			if (!validate_format(&f))
-				return(charcount);
-			else
-			{
-				charcount += print_formated(&f, va_arg(ap, void *));
-				//i = validate_format(format, i);
-			}
+			i++;
+			charcount += print_formated(&f, va_arg(ap, void *));
 		}
 	}
+*/
+	charcount = print_ap(format, &ap);
 	va_end(ap);
 	return (charcount);
 }
