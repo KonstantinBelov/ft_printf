@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t		ft_putstr_len(char const *s)
+int			ft_putstr_len(char *s)
 {
 	size_t	len;
 	
@@ -27,3 +27,12 @@ size_t		ft_putstr_len(char const *s)
 	}
 	return(len);
 }
+
+void			printc(t_format *f, va_list *ap, int *charcount)
+{
+	char *s;
+
+	s = ft_strnew(f->width);
+	charcount = &ft_putstr_len()
+}
+

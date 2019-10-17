@@ -15,7 +15,7 @@
 //# define SINGLE_%(c) (c == '%' && c + 1 != '%')
 # define FLAGS(c) (c == '#' || c == '0' || c == '-' || c == '+' || c == ' ')
 //# define 
-# define TYPE(c) (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 'c' || c == '%')
+# define TYPE(c) (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 	'c' || c == '%')
 
 
 # include "libft/libft.h"
@@ -47,9 +47,9 @@ void        parse_precision(t_format *f, const char *format, size_t *i, va_list 
 void		parse_length(t_format *f, const char *format, size_t *i);
 void		parse_type(t_format *f, const char *format, size_t *i);
 int			print_formated(t_format *f, va_list *ap);
+size_t		ft_putstr_len(char *s);
 
 //char		*detect_type(const char *restrict format, int charcount);
-//size_t		ft_putstr_len(char const *s);
 //size_t		validate_format_specifier(const char *restrict format, size_t i);
 //int			validate_format(t_format *f);
 

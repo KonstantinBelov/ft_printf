@@ -17,9 +17,11 @@ int			print_formated(t_format *f, va_list *ap)
 	int			charcount;
 
 	charcount = 0;
-	f = NULL;
-	ap = NULL;
+	//f = NULL;
+	//ap = NULL;
 	//charcount += ft_putstr_len((char const *)arg);
+	f->specifier == 'c' ? charcount = printc(f, ap) : 1 == 1;
+	
 	return (charcount);
 }
 
