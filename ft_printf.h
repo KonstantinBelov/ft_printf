@@ -47,8 +47,12 @@ void        parse_precision(t_format *f, const char *format, size_t *i, va_list 
 void		parse_length(t_format *f, const char *format, size_t *i);
 void		parse_type(t_format *f, const char *format, size_t *i);
 int			print_formated(t_format *f, va_list *ap);
-size_t		ft_putstr_len(char *s);
-
+int			ft_putstr_len(char *s);
+void		print_percent(t_format *f, int *charcount);
+void		print_c(t_format *f, va_list *ap, int *charcount);
+void		print_s(t_format *f, va_list *ap, int *charcount);
+//void		str_precision_handler(char **str, t_format *f, int *len);
+void		print_d(t_format *f, va_list *ap, int *charcount);
 //char		*detect_type(const char *restrict format, int charcount);
 //size_t		validate_format_specifier(const char *restrict format, size_t i);
 //int			validate_format(t_format *f);

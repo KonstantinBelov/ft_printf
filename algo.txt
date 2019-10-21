@@ -1,0 +1,10 @@
+case %:
+
+case c:
+
+case s:
+	find arg length;
+	if width > arg length:
+		create a string with 0/spaces
+	else
+

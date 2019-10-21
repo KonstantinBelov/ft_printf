@@ -21,12 +21,13 @@ t_format	*parse_format(const char *format, va_list *ap, size_t *i)
 	t_format *f;
     
     f = malloc(sizeof(t_format));
+    (*i)++;    //maybe not
     reset_format(f);
 	parse_flags(f, format, i);
     parse_width(f, format, i, ap);
     parse_precision(f, format, i, ap);
     parse_length(f, format, i);
-    parse_precision(f, format, i, ap);
+    parse_type(f, format, i);
 	return(f);
 }
 
