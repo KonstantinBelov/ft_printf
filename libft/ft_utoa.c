@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numlen.c                                        :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbelov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/18 23:57:11 by kbelov            #+#    #+#             */
-/*   Updated: 2019/02/27 00:23:10 by kbelov           ###   ########.fr       */
+/*   Created: 2019/10/21 18:46:22 by kbelov            #+#    #+#             */
+/*   Updated: 2019/10/21 18:46:32 by kbelov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int		ft_numlen(long long n)
-{
-	unsigned int		len;
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
 
-	len = 1;
-	if (n < 0)
-		n *= -1;
-	while (n >= 10)
+char		*ft_utoa(unsigned int n)
+{
+	size_t		len;
+	char		*a;
+
+	len = ft_numlen(n);
+	if ((a = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
+		return (NULL);
+	a[len] = '\0';
+	while (len-- > 0)
 	{
-		n /= 10;
-		len++;
+		a[len] = n % 10 + '0';
+		n = n / 10;
 	}
-	return (len);
+	return (a);
 }

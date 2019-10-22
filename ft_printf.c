@@ -28,6 +28,8 @@ int			print_formated(t_format *f, va_list *ap)
 		print_s(f, ap, &charcount);
 	else if (f->specifier == 'd' || f->specifier == 'i')
 		print_d(f, ap, &charcount);
+	else if (f->specifier == 'u')
+		print_u(f, ap, &charcount);
 	return (charcount);
 }
 

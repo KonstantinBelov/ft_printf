@@ -88,7 +88,7 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-unsigned int		ft_numlen(int n);
+unsigned int		ft_numlen(long long n);
 size_t				ft_strsplit_len(char const *s, char c);
 size_t				ft_word_len(char const *s, size_t start, char c);
 int					ft_isspace(char c);
@@ -100,5 +100,7 @@ int					ft_sqrt_rounded_up(int n);
 int					ft_find_index(char *s, char c, int oc);
 int					ft_max(int a, int b);
 void				ft_print_matrix(char **matrix);
+
+char				*ft_utoa(unsigned int n);
 
 #endif
