@@ -15,6 +15,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -102,5 +103,13 @@ int					ft_max(int a, int b);
 void				ft_print_matrix(char **matrix);
 
 char				*ft_utoa(unsigned int n);
-
+char				*ft_hitoa(short int n);
+char				*ft_hhitoa(signed char n);
+//char				*ft_litoa(long int n);
+char				*ft_llitoa(long long int n);
+/*
+char				*ft_Litoa(long long int n);
+char				*ft_jitoa(long long int n);
+char				*ft_zitoa(long long int n);
+*/
 #endif

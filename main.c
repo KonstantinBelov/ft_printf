@@ -90,14 +90,21 @@ int			main(void)
 	printf("expected_0093:\n");
 	printf("%d", 1);
 	printf("\n");	
-*/
+
 	printf("actual_0105:\n");
 	ft_printf("%+d", 42);
 	printf("\n");
 	printf("expected_0105:\n");
 	printf("%+d", 42);
 	printf("\n");
+*/
 
+	printf("actual_0105:\n");
+	ft_printf("%+d", 42);
+	printf("\n");
+	printf("expected_0105:\n");
+	printf("%+d", 42);
+	printf("\n");
 
 /*
 	char grade = "B";

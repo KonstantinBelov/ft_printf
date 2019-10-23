@@ -89,18 +89,15 @@ void		print_c(t_format *f, va_list *ap, int *charcount)
 
 void		print_s(t_format *f, va_list *ap, int *charcount)
 {
-	char	*s;
+	//char	*s;
 	int		len;
 	char	*str;
 
-	//str = ft_strdup(va_arg(*ap, char *));
-	
 	if (!(str = ft_strdup(va_arg(*ap, char *))))
 	{
 		str = malloc(sizeof(char) * 7);
 		str = "(null)";
 	}
-	
 	len = ft_strlen(str);
 	if (f->precision > 0 && f->precision < len)
 	{
@@ -109,156 +106,27 @@ void		print_s(t_format *f, va_list *ap, int *charcount)
 	}
 	//str_precision_handler(&str, f, &len);
 	if (f->width > len)
-	{
-		s = ft_strnew(f->width - len);
-		ft_memset(s, ' ', f->width - len);
-		(*charcount) += f->width;
-		if (f->minus)
-		{
-			ft_putstr(str);
-			ft_putstr(s);
-		}
-		else
-		{
-			ft_putstr(s);
-			ft_putstr(str);
-		}	
-	}
-	//else if (f->precision > 0)
-	//	(*charcount) += ft_putstr_len_prec(str, f->precision);
-	else
-		(*charcount) += ft_putstr_len(str);
-	//ft_strdel(&str);
-}
-/*
-void	str_precision_handler(char **str, t_format *f, int *len)
-{
-	//char	*new;
-	
-	if (f->precision > 0 && f->precision < *len)
-	{
-		*str[*len] = '\0';
-		//ft_strncat();
-		*len = f->precision;
-	}
-}
-*/
-
-void		print_d(t_format *f, va_list *ap, int *charcount)
-{
-	char	*s;
-	int		len;
-	char	*str;
-	//char	*p_pad;
-	//char	*tmp;
-
-	get_str(f, ap, &str);
-	if (str && f->plus && str[0] != '-')
-		str = ft_strjoin("+", str);
-	if (f->space && str && !f->plus && str[0] != '-')
-		str = ft_strjoin(" ", str);
-	len = ft_strlen(str);
-	//if (f->width > len)
-	/*
-	if (f->precision > 0 && f->precision < len)
-	{
-		str = ft_strsub((char const *)str, 0, f->precision);
-		len = f->precision;
-	}
-	*/
-	apply_precision(f, &len, &str);
-	/*
-	if (f->precision > len)
-	{
-		p_pad = ft_strnew(f->precision - len);
-		ft_memset(p_pad, '0', f->precision - len);
-		len = f->precision;
-		if (str[0] == '+' || str[0] == '-' || str[0] == ' ')
-		{
-			tmp = ft_strjoin(&str[0], p_pad);
-			str++;
-			str = ft_strjoin(tmp, str);
-		}
-		else
-			str = ft_strjoin(p_pad, str);
-	}
-	*/
-	//str_precision_handler(&str, f, &len);
-	if (f->width > len)
-	{
-		s = ft_strnew(f->width - len);
-		f->null && !f->minus ? ft_memset(s, '0', f->width - len) : ft_memset(s, ' ', f->width - len);
-		//ft_memset(s, ' ', f->width - len);
-		(*charcount) += f->width;
-		if (f->minus)
-		{
-			ft_putstr(str);
-			ft_putstr(s);
-		}
-		//else if (f->null)
-		else
-		{
-			if ((str[0] == '+' || str[0] == '-') && s[0] == '0')
-			{
-				str[0] == '+' ? ft_putchar('+') : ft_putchar('-');
-				str++;
-			}
-			ft_putstr(s);
-			ft_putstr(str);
-		}
-	}
+		print_s_extrawide(f, &len, charcount, &str);
 	else
 		(*charcount) += ft_putstr_len(str);
 	//ft_strdel(&str);
 }
 
-void		print_u(t_format *f, va_list *ap, int *charcount)
+void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
 {
-	char	*s;
-	int		len;
-	char	*str;
+	char *w_pad;
 
-	//str = ft_strdup(ft_itoa(va_arg(*ap, int)));
-	if (!(str = ft_strdup(ft_utoa(va_arg(*ap, unsigned int)))))
+	w_pad = ft_strnew(f->width - *len);
+	ft_memset(w_pad, ' ', f->width - *len);
+	(*charcount) += f->width;
+	if (f->minus)
 	{
-		str = malloc(sizeof(char) * 7);
-		str = "(null)";
-	}
-	if (str && f->plus && str[0] != '-')
-		str = ft_strjoin("+", str);
-	if (f->space && str && !f->plus && str[0] != '-')
-		str = ft_strjoin(" ", str);
-	len = ft_strlen(str);
-	if (f->precision > 0 && f->precision < len)
-	{
-		str = ft_strsub((char const *)str, 0, f->precision);
-		len = f->precision;
-	}
-	//str_precision_handler(&str, f, &len);
-	if (f->width > len)
-	{
-		s = ft_strnew(f->width - len);
-		f->null && !f->minus ? ft_memset(s, '0', f->width - len) : ft_memset(s, ' ', f->width - len);
-		//ft_memset(s, ' ', f->width - len);
-		(*charcount) += f->width;
-		if (f->minus)
-		{
-			ft_putstr(str);
-			ft_putstr(s);
-		}
-		//else if (f->null)
-		else
-		{
-			if (str[0] == '+' || str[0] == '-')
-			{
-				str[0] == '+' ? ft_putchar('+') : ft_putchar('-');
-				str++;
-			}
-			ft_putstr(s);
-			ft_putstr(str);
-		}
+		ft_putstr(*str);
+		ft_putstr(w_pad);
 	}
 	else
-		(*charcount) += ft_putstr_len(str);
-	//ft_strdel(&str);
+	{
+		ft_putstr(w_pad);
+		ft_putstr(*str);
+	}
 }

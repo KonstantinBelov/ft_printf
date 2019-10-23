@@ -26,18 +26,28 @@ void		reset_format(t_format *f)
 	f->specifier = 'a';
 }
 
-int			validate_format(t_format *f)
-{
-	if (TYPE(f->specifier))
-		return(1);
-	return (0);
-}
-
 void		get_str(t_format *f, va_list *ap, char **str)
 {
 	if (f->length || !f->length)
+	{
 	//if (f->length == 0)
-		*str = ft_strdup(ft_itoa(va_arg(*ap, int)));
+		if (f->length == 1)
+			*str = ft_strdup(ft_hitoa((short int)va_arg(*ap, int)));
+		if (f->length == 2)
+			*str = ft_strdup(ft_hhitoa((signed char)va_arg(*ap, int)));
+		//if (f->length == 3)
+		//	*str = ft_strdup(ft_litoa(va_arg(*ap, long long int)));
+		if (f->length == 4)
+			*str = ft_strdup(ft_llitoa(va_arg(*ap, long long int)));
+		/*if (f->length == 5)
+			*str = ft_strdup(ft_Litoa(va_arg(*ap, long long int)));
+		if (f->length == 7)
+			*str = ft_strdup(ft_jitoa(va_arg(*ap, long long int)));
+		if (f->length == 9)
+			*str = ft_strdup(ft_zitoa(va_arg(*ap, long long int)));*/
+		else
+			*str = ft_strdup(ft_itoa(va_arg(*ap, int)));
+	}
 	//else if (f->length == 1)
 	//	*str = ft_strdup(ft_itoa(va_arg(*ap, short)));
 	if (!(*str))
@@ -49,21 +59,38 @@ void		get_str(t_format *f, va_list *ap, char **str)
 
 void		apply_precision(t_format *f, int *len, char **str)
 {
-	char *p_pad;
-	char *tmp;
+	char	*p_pad;
+	char	*tmp;
+	int		pad_len;
+	char	*first;
 	
-	if (f->precision > *len)
+	first = malloc(sizeof(char) * 2);
+	first = ft_strncpy(first, *str, 1);
+	if (SIGN(*str[0]) ? f->precision >= *len : f->precision > *len)
 	{
-		p_pad = ft_strnew(f->precision - *len);
-		ft_memset(p_pad, '0', f->precision - *len);
+		pad_len = f->precision - *len;
 		*len = f->precision;
-		if (*str[0] == '+' || *str[0] == '-' || *str[0] == ' ')
+		if (SIGN(*str[0]))
+			pad_len++;
+		p_pad = ft_strnew(pad_len);
+		ft_memset(p_pad, '0', pad_len);
+		if (SIGN(*str[0]))
 		{
-			tmp = ft_strjoin(str[0], p_pad);
+			tmp = ft_strjoin(first, p_pad);
 			(*str)++;
 			*str = ft_strjoin(tmp, *str);
+			(*len)++;
 		}
 		else
 			*str = ft_strjoin(p_pad, *str);
+		/*
+		if (!ft_strcmp(*str, "0"))
+		{
+			if (f->width)
+				*str[0] = ' ';
+			else
+				(*str)++;
+		}
+		*/
 	}
 }

@@ -45,4 +45,21 @@ size_t		validate_format_specifier(const char *restrict format, size_t i)
 	return(valid);
 }
 
+int			validate_format(t_format *f)
+{
+	if (TYPE(f->specifier))
+		return(1);
+	return (0);
+}
 
+void	str_precision_handler(char **str, t_format *f, int *len)
+{
+	//char	*new;
+	
+	if (f->precision > 0 && f->precision < *len)
+	{
+		*str[*len] = '\0';
+		//ft_strncat();
+		*len = f->precision;
+	}
+}

@@ -76,10 +76,19 @@ The strcat() and strncat() functions append a copy of the null-terminated string
 char				*ft_strncat(char *restrict s1, const char *restrict s2, size_t n);
 size_t				ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize);
 char				*ft_strchr(const char *s, int c);
+
+The strchr() function locates the first occurrence of c (converted to a char) in the string pointed to by s.  The terminating null character is considered to be part of the string; therefore if c is `\0', the functions locate the terminating `\0'.
+
 char				*ft_strrchr(const char *s, int c);
+
+The strrchr() function is identical to strchr(), except it locates the last occurrence of c.
+
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int				ft_strcmp(const char *s1, const char *s2);
+
+
+
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int				ft_atoi(const char *str);

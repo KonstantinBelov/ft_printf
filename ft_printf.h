@@ -16,12 +16,14 @@
 # define FLAGS(c) (c == '#' || c == '0' || c == '-' || c == '+' || c == ' ')
 //# define 
 # define TYPE(c) (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 	'c' || c == '%')
-
+# define SIGN(c) (c == '+' || c == '-' || c == ' ')
+# define ZERO(c) (c == "0")
 
 # include "libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <limits.h>
 
 typedef struct	s_format
 {
@@ -51,6 +53,7 @@ int			ft_putstr_len(char *s);
 void		print_percent(t_format *f, int *charcount);
 void		print_c(t_format *f, va_list *ap, int *charcount);
 void		print_s(t_format *f, va_list *ap, int *charcount);
+void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str);
 //void		str_precision_handler(char **str, t_format *f, int *len);
 void		print_d(t_format *f, va_list *ap, int *charcount);
 void		print_u(t_format *f, va_list *ap, int *charcount);
