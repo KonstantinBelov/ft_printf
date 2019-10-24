@@ -97,13 +97,35 @@ int			main(void)
 	printf("expected_0105:\n");
 	printf("%+d", 42);
 	printf("\n");
-*/
 
 	printf("actual_0105:\n");
 	ft_printf("%+d", 42);
 	printf("\n");
 	printf("expected_0105:\n");
 	printf("%+d", 42);
+	printf("\n");
+
+	//short int i = 32767;
+	printf("actual_0133:\n");
+	ft_printf("%hd", 32767);
+	printf("\n");
+	printf("expected_0133:\n");
+	//printf("%hd", 32767);
+	printf("\n");
+*/
+	//short int i = -32768;
+	printf("actual_0134:\n");
+	ft_printf("%hd", -32768);
+	printf("\n");
+	printf("expected_0134:\n");
+	//printf("%hd", -32768);
+	printf("\n");
+
+	printf("actual_0136:\n");
+	ft_printf("%hd", -32769);
+	printf("\n");
+	printf("expected_0136:\n");
+	//printf("%hd", -32769);
 	printf("\n");
 
 /*
