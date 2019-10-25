@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format.c                                           :+:      :+:    :+:   */
+/*   output_oxx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbelov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/12 15:34:34 by kbelov            #+#    #+#             */
-/*   Updated: 2019/10/12 15:38:08 by kbelov           ###   ########.fr       */
+/*   Created: 2019/10/24 19:23:31 by kbelov            #+#    #+#             */
+/*   Updated: 2019/10/24 19:23:36 by kbelov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		reset_format(t_format *f)
+void		print_oxx(t_format *f, va_list *ap, int *charcount)
 {
-	f->minus = 0;
-	f->plus = 0;
-	f->space = 0;
-	f->hash = 0;
-	f->null = 0;
-	f->number = 0;
-	f->width = 0;
-	f->precision = -1;
-	f->length = 0;
-	f->specifier = 'a';
+	int		len;
+	char    *str;
+
+	get_oxx_str(f, ap, &str);
+	if (str && f->plus && str[0] != '-')
+		str = ft_strjoin("+", str);
+	if (f->space && str && !f->plus && str[0] != '-')
+		str = ft_strjoin(" ", str);
+	len = ft_strlen(str);
+	apply_precision(f, &len, &str);
+	if (!ft_strcmp(str, "0"))
+	{
+		if (f->width)
+			str[0] = ' ';
+		else
+			str++;
+	}
+	if (f->width > len)
+        print_num_extrawide(f, &len, charcount, &str);
+	else
+		(*charcount) += ft_putstr_len(str);
+	//ft_strdel(&str);
 }
 
-void		get_d_str(t_format *f, va_list *ap, char **str)
+void		get_oxx_str(t_format *f, va_list *ap, char **str)
 {
 	if (f->length || !f->length)
 	{
@@ -45,52 +57,16 @@ void		get_d_str(t_format *f, va_list *ap, char **str)
 			*str = ft_strdup(ft_jitoa(va_arg(*ap, long long int)));
 		else if (f->length == 9)
 			*str = ft_strdup(ft_zitoa(va_arg(*ap, long long int)));*/
-		else
+		else if (f->specifier == 'o')
+			*str = ft_strdup(ft_itoa_base(va_arg(*ap, int), 8));
+        else if (f->specifier == 'x' || f->specifier == 'X')
+			*str = ft_strdup(ft_itoa_base(va_arg(*ap, int), 16));
+        else
 			*str = ft_strdup(ft_itoa(va_arg(*ap, int)));
 	}
-	//else if (f->length == 1)
-	//	*str = ft_strdup(ft_itoa(va_arg(*ap, short)));
 	if (!(*str))
 	{
 		*str = malloc(sizeof(char) * 7);
 		*str = "(null)";
-	}
-}
-
-void		apply_precision(t_format *f, int *len, char **str)
-{
-	char	*p_pad;
-	char	*tmp;
-	int		pad_len;
-	char	*first;
-	
-	first = malloc(sizeof(char) * 2);
-	first = ft_strncpy(first, *str, 1);
-	if (SIGN(*str[0]) ? f->precision >= *len : f->precision > *len)
-	{
-		pad_len = f->precision - *len;
-		*len = f->precision;
-		if (SIGN(*str[0]))
-			pad_len++;
-		p_pad = ft_strnew(pad_len);
-		ft_memset(p_pad, '0', pad_len);
-		if (SIGN(*str[0]))
-		{
-			tmp = ft_strjoin(first, p_pad);
-			(*str)++;
-			*str = ft_strjoin(tmp, *str);
-			(*len)++;
-		}
-		else
-			*str = ft_strjoin(p_pad, *str);
-		/*
-		if (!ft_strcmp(*str, "0"))
-		{
-			if (f->width)
-				*str[0] = ' ';
-			else
-				(*str)++;
-		}
-		*/
 	}
 }

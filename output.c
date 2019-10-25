@@ -130,3 +130,27 @@ void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
 		ft_putstr(*str);
 	}
 }
+
+void		print_num_extrawide(t_format *f, int *len, int *charcount, char **str)
+{
+	char	*w_pad;
+	
+	w_pad = ft_strnew(f->width - *len);
+	f->null && !f->minus && (f->precision < 0) ? ft_memset(w_pad, '0', f->width - *len) : ft_memset(w_pad, ' ', f->width - *len);
+	(*charcount) += f->width;
+	if (f->minus)
+	{
+		ft_putstr(*str);
+		ft_putstr(w_pad);
+	}
+	else
+	{
+		if ((*str[0] == '+' || *str[0] == '-') && w_pad[0] == '0')
+		{
+			*str[0] == '+' ? ft_putchar('+') : ft_putchar('-');
+			(*str)++;
+		}
+		ft_putstr(w_pad);
+		ft_putstr(*str);
+	}
+}

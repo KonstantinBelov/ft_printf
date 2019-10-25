@@ -6,7 +6,7 @@
 #    By: kbelov <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 14:25:08 by kbelov            #+#    #+#              #
-#    Updated: 2019/10/11 16:42:47 by kbelov           ###   ########.fr        #
+#    Updated: 2019/10/24 18:47:57 by kbelov           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = ft_printf.c format.c parse.c parse_helpers.c output.c output_d.c
+SRC = ft_printf.c format.c parse.c parse_helpers.c output.c output_d.c output_oxx.c
 
 #OBJ = ft_printf.o second.o
 OBJ = *.o

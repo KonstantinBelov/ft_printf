@@ -14,11 +14,10 @@
 
 void		print_d(t_format *f, va_list *ap, int *charcount)
 {
-	char	*w_pad;
 	int		len;
 	char    *str;
 
-	get_str(f, ap, &str);
+	get_d_str(f, ap, &str);
 	if (str && f->plus && str[0] != '-')
 		str = ft_strjoin("+", str);
 	if (f->space && str && !f->plus && str[0] != '-')
@@ -34,27 +33,7 @@ void		print_d(t_format *f, va_list *ap, int *charcount)
 	}
 		//f->width ? str[0] = ' ' : str++;
 	if (f->width > len)
-	{
-		
-		w_pad = ft_strnew(f->width - len);
-		f->null && !f->minus && (f->precision < 0) ? ft_memset(w_pad, '0', f->width - len) : ft_memset(w_pad, ' ', f->width - len);
-		(*charcount) += f->width;
-		if (f->minus)
-		{
-			ft_putstr(str);
-			ft_putstr(w_pad);
-		}
-		else
-		{
-			if ((str[0] == '+' || str[0] == '-') && w_pad[0] == '0')
-			{
-				str[0] == '+' ? ft_putchar('+') : ft_putchar('-');
-				str++;
-			}
-			ft_putstr(w_pad);
-			ft_putstr(str);
-		}
-	}
+		print_num_extrawide(f, &len, charcount, &str);
 	else
 		(*charcount) += ft_putstr_len(str);
 	//ft_strdel(&str);

@@ -118,7 +118,7 @@ int			main(void)
 	ft_printf("%hd", -32768);
 	printf("\n");
 	printf("expected_0134:\n");
-	//printf("%hd", -32768);
+	printf("%hd", -32768);
 	printf("\n");
 
 	printf("actual_0136:\n");

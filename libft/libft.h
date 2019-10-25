@@ -112,4 +112,5 @@ char				*ft_Litoa(long long int n);
 char				*ft_jitoa(long long int n);
 char				*ft_zitoa(long long int n);
 */
+char				*ft_itoa_base(int value, int base);
 #endif

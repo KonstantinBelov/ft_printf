@@ -30,6 +30,8 @@ int			print_formated(t_format *f, va_list *ap)
 		print_d(f, ap, &charcount);
 	else if (f->specifier == 'u')
 		print_u(f, ap, &charcount);
+	else if (f->specifier == 'o' || f->specifier == 'x' || f->specifier == 'X')
+		print_oxx(f, ap, &charcount);
 	return (charcount);
 }
 
