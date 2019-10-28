@@ -22,8 +22,11 @@ void		print_d(t_format *f, va_list *ap, int *charcount)
 		str = ft_strjoin("+", str);
 	if (f->space && str && !f->plus && str[0] != '-')
 		str = ft_strjoin(" ", str);
+	if (!f->precision && ft_strcmp(str, "0") == 0)
+		str = ft_strdup("");
 	len = ft_strlen(str);
 	apply_precision(f, &len, &str);
+	/*
 	if (!ft_strcmp(str, "0"))
 	{
 		if (f->width)
@@ -31,6 +34,7 @@ void		print_d(t_format *f, va_list *ap, int *charcount)
 		else
 			str++;
 	}
+	*/
 		//f->width ? str[0] = ' ' : str++;
 	if (f->width > len)
 		print_num_extrawide(f, &len, charcount, &str);
@@ -44,23 +48,23 @@ void		print_u(t_format *f, va_list *ap, int *charcount)
 	char	*s;
 	int		len;
 	char	*str;
-
-	//str = ft_strdup(ft_itoa(va_arg(*ap, int)));
+/*
 	if (!(str = ft_strdup(ft_utoa(va_arg(*ap, unsigned int)))))
 	{
 		str = malloc(sizeof(char) * 7);
 		str = "(null)";
 	}
-	if (str && f->plus && str[0] != '-')
-		str = ft_strjoin("+", str);
-	//if (f->space && str && !f->plus && str[0] != '-')
-	//	str = ft_strjoin(" ", str);
+*/
+	get_u_str(f, ap, &str);
 	len = ft_strlen(str);
+	apply_precision(f, &len, &str);
+	/*
 	if (f->precision > 0 && f->precision < len)
 	{
 		str = ft_strsub((char const *)str, 0, f->precision);
 		len = f->precision;
 	}
+	*/
 	//str_precision_handler(&str, f, &len);
 	if (f->width > len)
 	{

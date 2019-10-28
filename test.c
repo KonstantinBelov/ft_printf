@@ -17,8 +17,7 @@ int		main(void)
 	// printf("%d\n", j);
 
 
-
-	printf("%hd", -32768);
-	ft_printf("%hd", -32768);
+	printf("%hd", −32768);
+	ft_printf("%hd", −32768);
 	return(0);
 }

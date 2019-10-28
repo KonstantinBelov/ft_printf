@@ -14,7 +14,7 @@
 #include <string.h>
 #include "libft.h"
 
-char		*ft_utoa(unsigned int n)
+char		*ft_utoa(unsigned long long n)
 {
 	size_t		len;
 	char		*a;

@@ -15,6 +15,8 @@
 
 int			main(void)
 {
+	int i;
+
 	/*
 	printf("actual_1:\n");
 	ft_printf("Hello World!\n");
@@ -63,6 +65,52 @@ int			main(void)
 	printf("%.0%");
 	printf("\n");
 
+	printf("*************************************************************\n");
+	printf("actual_014:\n");
+	i = ft_printf("%x", 0);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_014:\n");
+	i = printf("%x", 0);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
+	printf("actual_:\n");
+	ft_printf("%d", 0);
+	printf("\n");
+	printf("expected_:\n");
+	printf("%d", 0);
+	printf("\n");
+
+	printf("*************************************************************\n");
+	printf("actual_16:\n");
+	i = ft_printf("%x", -42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_16:\n");
+	i = printf("%x", -42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
+	printf("*************************************************************\n");
+	printf("actual_40:\n");
+	i = ft_printf("%#08x", 42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_40:\n");
+	i = printf("%#08x", 42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
 	printf("actual_0045:\n");
 	ft_printf("%s", "abc");
 	printf("\n");
@@ -83,7 +131,20 @@ int			main(void)
 	printf("expected_0069:\n");
 	printf("@moulitest: %s", NULL);
 	printf("\n");	
-
+*/
+	printf("*************************************************************\n");
+	printf("actual_91:\n");
+	i = ft_printf("@moulitest: %#.o %#.0o", 0, 0);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_91:\n");
+	i = printf("@moulitest: %#.o %#.0o", 0, 0);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+/*
 	printf("actual_0093:\n");
 	ft_printf("%d", 1);
 	printf("\n");
@@ -112,7 +173,7 @@ int			main(void)
 	printf("expected_0133:\n");
 	//printf("%hd", 32767);
 	printf("\n");
-*/
+
 	//short int i = -32768;
 	printf("actual_0134:\n");
 	ft_printf("%hd", -32768);
@@ -128,7 +189,73 @@ int			main(void)
 	//printf("%hd", -32769);
 	printf("\n");
 
-/*
+	printf("*************************************************************\n");
+	printf("actual_136:\n");
+	i = ft_printf("%hd", -32769);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_136:\n");
+	i = printf("%hd", -32769);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
+	printf("actual_012:\n");
+	ft_printf("%x", 42);
+	printf("\n");
+	printf("expected_012:\n");
+	printf("%x", 42);
+	printf("\n");
+
+	printf("*************************************************************\n");
+	printf("actual_144:\n");
+	i = ft_printf("%ld", -2147483649);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_144:\n");
+	i = printf("%ld", -2147483649);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
+	printf("actual_177:\n");
+	ft_printf("%+u", 4294967295);
+	printf("\n");
+	printf("expected_177:\n");
+	printf("%+u", 4294967295);
+	printf("\n");
+
+
+	printf("*************************************************************\n");
+	printf("actual_167:\n");
+	i = ft_printf("%u", 0);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_167:\n");
+	i = printf("%u", 0);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
+	printf("*************************************************************\n");
+	printf("actual_182:\n");
+	i = ft_printf("@moulitest: %.5u", 42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_182:\n");
+	i = printf("@moulitest: %.5u", 42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
 	char grade = "B";
 	char name[] = "Josh";
 	char sport[] = "football";

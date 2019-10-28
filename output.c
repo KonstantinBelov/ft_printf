@@ -150,7 +150,12 @@ void		print_num_extrawide(t_format *f, int *len, int *charcount, char **str)
 			*str[0] == '+' ? ft_putchar('+') : ft_putchar('-');
 			(*str)++;
 		}
-		ft_putstr(w_pad);
-		ft_putstr(*str);
+		if (f->hash && f->null && ft_strcmp(*str, "0") != 0)
+			print_wide_hash(f, &w_pad, str);
+		else
+		{
+			ft_putstr(w_pad);
+			ft_putstr(*str);
+		}
 	}
 }

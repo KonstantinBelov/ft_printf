@@ -22,15 +22,20 @@ void		print_oxx(t_format *f, va_list *ap, int *charcount)
 		str = ft_strjoin("+", str);
 	if (f->space && str && !f->plus && str[0] != '-')
 		str = ft_strjoin(" ", str);
+	if (f->hash && ft_strcmp(str, "0") != 0)
+	{
+		if (f->specifier == 'o')
+			str = ft_strjoin("0", str);
+		else if (f->specifier == 'x')
+			str = ft_strjoin("0x", str);
+		else if (f->specifier == 'X')
+			str = ft_strjoin("0X", str);
+	}
+	if (!f->precision && ft_strcmp(str, "0") == 0 && !(f->hash && f->specifier == 'o'))
+	//if (!f->precision && ft_strcmp(str, "0") == 0)	
+		str = ft_strdup("");
 	len = ft_strlen(str);
 	apply_precision(f, &len, &str);
-	if (!ft_strcmp(str, "0"))
-	{
-		if (f->width)
-			str[0] = ' ';
-		else
-			str++;
-	}
 	if (f->width > len)
         print_num_extrawide(f, &len, charcount, &str);
 	else
@@ -60,7 +65,11 @@ void		get_oxx_str(t_format *f, va_list *ap, char **str)
 		else if (f->specifier == 'o')
 			*str = ft_strdup(ft_itoa_base(va_arg(*ap, int), 8));
         else if (f->specifier == 'x' || f->specifier == 'X')
+		{
 			*str = ft_strdup(ft_itoa_base(va_arg(*ap, int), 16));
+			if (f->specifier == 'x')
+				str_tolower(str);
+		}		
         else
 			*str = ft_strdup(ft_itoa(va_arg(*ap, int)));
 	}
@@ -69,4 +78,39 @@ void		get_oxx_str(t_format *f, va_list *ap, char **str)
 		*str = malloc(sizeof(char) * 7);
 		*str = "(null)";
 	}
+}
+
+void		str_tolower(char **s)
+{
+	//int		i;
+	char	*tmp;
+
+	tmp = *s;
+
+	while (*tmp != '\0')
+	{
+		if (*tmp >= 'A' && *tmp <= 'Z')
+			*tmp += 32;
+		tmp++;
+	}
+	//free(tmp);
+}
+
+void		print_wide_hash(t_format *f, char **w_pad, char **str)
+{
+	if (f->specifier == 'o')
+		ft_putstr("0");
+	else if (f->specifier == 'x')
+	{
+		ft_putstr("0x");
+		(*str)++;
+	}
+	else if (f->specifier == 'X')
+	{
+		ft_putstr("0X");
+		(*str)++;
+	}
+	(*str)++;
+	ft_putstr(*w_pad);
+	ft_putstr(*str);
 }

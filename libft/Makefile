@@ -26,7 +26,8 @@ ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strncpy.c \
 ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c ft_strsplit.c \
 ft_strsplit_len.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c \
 ft_toupper.c ft_word_len.c ft_sqrt_rounded_up.c ft_find_index.c ft_max.c \
-ft_print_matrix.c ft_utoa.c ft_llitoa.c ft_hitoa.c ft_hhitoa.c ft_itoa_base.c
+ft_print_matrix.c ft_utoa.c ft_litoa.c ft_hitoa.c ft_hhitoa.c ft_itoa_base.c \
+ft_llitoa.c
 
 OBJ =  ft_abs.o ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 ft_isdigit.o ft_isprint.o ft_isspace.o ft_itoa.o ft_lstadd.o ft_lstdel.o \
@@ -40,7 +41,8 @@ ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o ft_strncmp.o ft_strncpy.o \
 ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o ft_strsplit.o \
 ft_strsplit_len.o ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o \
 ft_toupper.o ft_word_len.o ft_sqrt_rounded_up.o ft_find_index.o ft_max.o \
-ft_print_matrix.o ft_utoa.o ft_llitoa.o ft_hitoa.o ft_hhitoa.o ft_itoa_base.o
+ft_print_matrix.o ft_utoa.o ft_litoa.o ft_hitoa.o ft_hhitoa.o ft_itoa_base.o \
+ft_llitoa.o
 
 HEADER = libft.h
 

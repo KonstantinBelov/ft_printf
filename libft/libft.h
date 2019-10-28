@@ -102,10 +102,10 @@ int					ft_find_index(char *s, char c, int oc);
 int					ft_max(int a, int b);
 void				ft_print_matrix(char **matrix);
 
-char				*ft_utoa(unsigned int n);
+char				*ft_utoa(unsigned long long n);
 char				*ft_hitoa(short int n);
 char				*ft_hhitoa(signed char n);
-//char				*ft_litoa(long int n);
+char				*ft_litoa(long int n);
 char				*ft_llitoa(long long int n);
 /*
 char				*ft_Litoa(long long int n);

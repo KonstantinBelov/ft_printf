@@ -14,10 +14,10 @@
 # define FT_PRINTF_H
 //# define SINGLE_%(c) (c == '%' && c + 1 != '%')
 # define FLAGS(c) (c == '#' || c == '0' || c == '-' || c == '+' || c == ' ')
-//# define 
 # define TYPE(c) (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 	'c' || c == '%')
 # define SIGN(c) (c == '+' || c == '-' || c == ' ')
 # define ZERO(c) (c == "0")
+# define OXX(c) (c == 'o' || c == 'x' || c == 'X')
 
 # include "libft/libft.h"
 # include <unistd.h>
@@ -59,12 +59,15 @@ void		print_d(t_format *f, va_list *ap, int *charcount);
 void		print_u(t_format *f, va_list *ap, int *charcount);
 void		print_oxx(t_format *f, va_list *ap, int *charcount);
 void		get_d_str(t_format *f, va_list *ap, char **str);
+void		get_u_str(t_format *f, va_list *ap, char **str);
 void		get_oxx_str(t_format *f, va_list *ap, char **str);
 void		apply_precision(t_format *f, int *len, char **str);
 void		print_num_extrawide(t_format *f, int *len, int *charcount, char **str);
 //char		*detect_type(const char *restrict format, int charcount);
 //size_t		validate_format_specifier(const char *restrict format, size_t i);
 //int			validate_format(t_format *f);
+void		str_tolower(char **s);
+void		print_wide_hash(t_format *f, char **w_pad, char **str);
 
 int			main(void);
 //int				main(int ac, char *av[]);
