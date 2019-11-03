@@ -113,4 +113,5 @@ char				*ft_jitoa(long long int n);
 char				*ft_zitoa(long long int n);
 */
 char				*ft_itoa_base(int value, int base);
+char				*ft_ullitoa_base(unsigned long long value, int base);
 #endif

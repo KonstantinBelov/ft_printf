@@ -32,6 +32,12 @@ int			print_formated(t_format *f, va_list *ap)
 		print_u(f, ap, &charcount);
 	else if (f->specifier == 'o' || f->specifier == 'x' || f->specifier == 'X')
 		print_oxx(f, ap, &charcount);
+	//else if (f->specifier == 'a')
+	//	return (0);
+	else if (f->specifier == 'p')
+		print_p(f, ap, &charcount);
+	else
+		charcount = 0;
 	return (charcount);
 }
 
@@ -46,6 +52,7 @@ t_format	*parse_format(const char *format, va_list *ap, size_t *i)
     parse_width(f, format, i, ap);
     parse_precision(f, format, i, ap);
     parse_length(f, format, i);
+	parse_flags(f, format, i);
     parse_type(f, format, i);
 	return(f);
 }
@@ -58,19 +65,22 @@ int			print_ap(const char *format, va_list *ap)
 
 	charcount = 0;
 	i = 0;
-	while (format[i])
+	//while (format[i])
+	while (i < ft_strlen(format))
 	{
 		if (format[i] == '%')
 		{
 			f = parse_format(format, ap, &i);
-			charcount += print_formated(f, ap);
+			if (f->specifier != 'a')
+				charcount += print_formated(f, ap);
 		}
 		else
 		{
 			ft_putchar(format[i]);
 			charcount++; 
+			i++;
 		}
-		i++;
+		//i++;
 	}
 	//free(f);
 	return(charcount);

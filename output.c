@@ -30,6 +30,7 @@ int			ft_putstr_len(char *s)
 
 void		print_percent(t_format *f, int *charcount)
 {
+	/*
 	char *s;
 
 	if (f->width)
@@ -56,6 +57,20 @@ void		print_percent(t_format *f, int *charcount)
 		ft_putchar('%');
 	}
 	free((void *)s);
+	*/
+	int len;
+	char *c;
+
+	len = 1;
+	c = ft_strdup("%");
+	if (f->width > 1)
+		print_s_extrawide(f, &len, charcount, &c);
+	else
+	{
+		ft_putchar('%');
+		(*charcount)++;
+	}
+	free((void *)c);
 }
 
 void		print_c(t_format *f, va_list *ap, int *charcount)
@@ -99,7 +114,7 @@ void		print_s(t_format *f, va_list *ap, int *charcount)
 		str = "(null)";
 	}
 	len = ft_strlen(str);
-	if (f->precision > 0 && f->precision < len)
+	if (f->precision >= 0 && f->precision < len)
 	{
 		str = ft_strsub((char const *)str, 0, f->precision);
 		len = f->precision;
@@ -117,7 +132,7 @@ void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
 	char *w_pad;
 
 	w_pad = ft_strnew(f->width - *len);
-	ft_memset(w_pad, ' ', f->width - *len);
+	f->null && !f->minus ? ft_memset(w_pad, '0', f->width - *len) : ft_memset(w_pad, ' ', f->width - *len);
 	(*charcount) += f->width;
 	if (f->minus)
 	{
@@ -128,34 +143,5 @@ void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
 	{
 		ft_putstr(w_pad);
 		ft_putstr(*str);
-	}
-}
-
-void		print_num_extrawide(t_format *f, int *len, int *charcount, char **str)
-{
-	char	*w_pad;
-	
-	w_pad = ft_strnew(f->width - *len);
-	f->null && !f->minus && (f->precision < 0) ? ft_memset(w_pad, '0', f->width - *len) : ft_memset(w_pad, ' ', f->width - *len);
-	(*charcount) += f->width;
-	if (f->minus)
-	{
-		ft_putstr(*str);
-		ft_putstr(w_pad);
-	}
-	else
-	{
-		if ((*str[0] == '+' || *str[0] == '-') && w_pad[0] == '0')
-		{
-			*str[0] == '+' ? ft_putchar('+') : ft_putchar('-');
-			(*str)++;
-		}
-		if (f->hash && f->null && ft_strcmp(*str, "0") != 0)
-			print_wide_hash(f, &w_pad, str);
-		else
-		{
-			ft_putstr(w_pad);
-			ft_putstr(*str);
-		}
 	}
 }

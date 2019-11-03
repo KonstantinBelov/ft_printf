@@ -96,5 +96,15 @@ void			parse_length(t_format *f, const char *format, size_t *i)
 void			parse_type(t_format *f, const char *format, size_t *i)
 {
     if (TYPE(format[*i]))
+    {
         f->specifier = format[*i];
+        (*i)++;
+    }
+    else if (format[*i] == 'U')
+    {
+        f->specifier = 'u';
+        (*i)++;
+    }
+    //if (f->specifier == 'p')
+    //   f->specifier = 'x';
 }

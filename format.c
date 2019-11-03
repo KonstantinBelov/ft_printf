@@ -36,12 +36,12 @@ void		get_d_str(t_format *f, va_list *ap, char **str)
 		*str = ft_strdup(ft_litoa(va_arg(*ap, long int)));
 	else if (f->length == 4)
 		*str = ft_strdup(ft_llitoa(va_arg(*ap, long long int)));
-	/*else if (f->length == 5)
-		*str = ft_strdup(ft_Litoa(va_arg(*ap, long long int)));
+	//else if (f->length == 5)
+	//	*str = ft_strdup(ft_Litoa(va_arg(*ap, long long int)));
 	else if (f->length == 7)
-		*str = ft_strdup(ft_jitoa(va_arg(*ap, long long int)));
+		*str = ft_strdup(ft_jitoa(va_arg(*ap, intmax_t)));
 	else if (f->length == 9)
-		*str = ft_strdup(ft_zitoa(va_arg(*ap, long long int)));*/
+		*str = ft_strdup(ft_zitoa(va_arg(*ap, size_t)));
 	else
 		*str = ft_strdup(ft_itoa(va_arg(*ap, int)));
 	if (!(*str))
@@ -58,7 +58,8 @@ void		get_u_str(t_format *f, va_list *ap, char **str)
 	else if (f->length == 2)
 		*str = ft_strdup(ft_utoa((unsigned char)va_arg(*ap, unsigned int)));
 	else if (f->length == 3)
-		*str = ft_strdup(ft_utoa(va_arg(*ap, unsigned long)));
+		//*str = ft_strdup(ft_utoa_(va_arg(*ap, unsigned long)));
+		*str = ft_strdup(ft_utoa_(va_arg(*ap, intmax_t)));
 	else if (f->length == 4)
 		*str = ft_strdup(ft_utoa(va_arg(*ap, unsigned long long)));
 	/*else if (f->length == 5)
@@ -69,6 +70,7 @@ void		get_u_str(t_format *f, va_list *ap, char **str)
 		*str = ft_strdup(ft_zitoa(va_arg(*ap, long long int)));*/
 	else
 		*str = ft_strdup(ft_utoa(va_arg(*ap, unsigned int)));
+		//*str = ft_strdup(ft_utoa(va_arg(*ap, intmax_t)));
 	if (!(*str))
 	{
 		*str = malloc(sizeof(char) * 7);

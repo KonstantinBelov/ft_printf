@@ -58,6 +58,7 @@ void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str);
 void		print_d(t_format *f, va_list *ap, int *charcount);
 void		print_u(t_format *f, va_list *ap, int *charcount);
 void		print_oxx(t_format *f, va_list *ap, int *charcount);
+void		print_p(t_format *f, va_list *ap, int *charcount);
 void		get_d_str(t_format *f, va_list *ap, char **str);
 void		get_u_str(t_format *f, va_list *ap, char **str);
 void		get_oxx_str(t_format *f, va_list *ap, char **str);
@@ -68,6 +69,8 @@ void		print_num_extrawide(t_format *f, int *len, int *charcount, char **str);
 //int			validate_format(t_format *f);
 void		str_tolower(char **s);
 void		print_wide_hash(t_format *f, char **w_pad, char **str);
+char		*ft_ullitoa_base_(intmax_t value, int base);
+char		*ft_utoa_(unsigned long long n);
 
 int			main(void);
 //int				main(int ac, char *av[]);
