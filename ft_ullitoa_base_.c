@@ -51,12 +51,12 @@ int		main(int ac, char *av[])
 }
 */
 
-char		*ft_utoa_(unsigned long long n)
+char		*ft_utoa_(uintmax_t n)
 {
 	size_t		len;
 	char		*a;
 
-	len = ft_numlen(n);
+	len = ft_numlen_(n);
 	if ((a = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	a[len] = '\0';
@@ -66,4 +66,19 @@ char		*ft_utoa_(unsigned long long n)
 		n = n / 10;
 	}
 	return (a);
+}
+
+size_t		ft_numlen_(uintmax_t n)
+{
+	size_t		len;
+
+	len = 1;
+	//if (n < 0)
+	//	n *= -1;
+	while (n >= 10)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
 }

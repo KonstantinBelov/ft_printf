@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int		ft_numlen(long long n)
+#include "libft.h"
+
+size_t		ft_numlen(intmax_t n)
 {
-	unsigned int		len;
+	size_t		len;
 
 	len = 1;
 	if (n < 0)

@@ -36,6 +36,8 @@ int			print_formated(t_format *f, va_list *ap)
 	//	return (0);
 	else if (f->specifier == 'p')
 		print_p(f, ap, &charcount);
+	else if (f->specifier == 'f')
+		print_f(f, ap, &charcount);
 	else
 		charcount = 0;
 	return (charcount);

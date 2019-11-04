@@ -285,13 +285,13 @@ int			main(void)
 	printf("*************************************************************\n");
 
 	printf("*************************************************************\n");
+	j = -42;
 	printf("actual_180:\n");
 	i = ft_printf("%lu", -42);
 	printf("\n");
 	printf("Returned value: %d", i);
 	printf("\n");
 	printf("expected_180:\n");
-	j = -42;
 	i = printf("%lu", j);
 	printf("\n");
 	printf("Returned value: %d", i);
@@ -331,20 +331,20 @@ int			main(void)
 	printf("Returned value: %d", i);
 	printf("\n");
 	printf("*************************************************************\n");
-*/
+
 	printf("*************************************************************\n");
 	printf("actual_0004:\n");
 	i = ft_printf("%Z");
 	printf("\n");
 	printf("Returned value: %d", i);
 	printf("\n");
-	/*printf("expected_0004:\n");
+	printf("expected_0004:\n");
 	i = printf("%Z");
 	printf("\n");
 	printf("Returned value: %d", i);
-	printf("\n");*/
+	printf("\n");
 	printf("*************************************************************\n");
-/*
+
 	printf("*************************************************************\n");
 	printf("actual_9:\n");
 	i = ft_printf("%05%");
@@ -448,6 +448,32 @@ int			main(void)
 	printf("Returned value: %d", i);
 	printf("\n");
 	printf("*************************************************************\n");
+
+	printf("*************************************************************\n");
+	printf("actual_1313:\n");
+	i = ft_printf("this %f float", 1.5);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_1313:\n");
+	i = printf("this %f float", 1.5);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
 */
+	printf("*************************************************************\n");
+	printf("actual_1317:\n");
+	i = ft_printf("%f", 573.924);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_1317:\n");
+	i = printf("%f", 573.924);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+	
 	return (0);
 }

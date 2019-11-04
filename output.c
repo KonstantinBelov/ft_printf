@@ -30,34 +30,6 @@ int			ft_putstr_len(char *s)
 
 void		print_percent(t_format *f, int *charcount)
 {
-	/*
-	char *s;
-
-	if (f->width)
-	{
-		s = ft_strnew(f->width - 1);
-		ft_memset(s, ' ', f->width - 1);
-		(*charcount) += f->width;
-	}
-	else
-	{
-		s = NULL;
-		(*charcount)++;
-	}
-	if (f->minus)
-	{
-		ft_putchar('%');
-		if (s)
-			ft_putstr(s);
-	}
-	else
-	{
-		if (s)
-			ft_putstr(s);
-		ft_putchar('%');
-	}
-	free((void *)s);
-	*/
 	int len;
 	char *c;
 

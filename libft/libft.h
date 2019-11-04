@@ -89,7 +89,7 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-unsigned int		ft_numlen(long long n);
+size_t				ft_numlen(intmax_t n);
 size_t				ft_strsplit_len(char const *s, char c);
 size_t				ft_word_len(char const *s, size_t start, char c);
 int					ft_isspace(char c);
@@ -107,11 +107,12 @@ char				*ft_hitoa(short int n);
 char				*ft_hhitoa(signed char n);
 char				*ft_litoa(long int n);
 char				*ft_llitoa(long long int n);
-/*
-char				*ft_Litoa(long long int n);
-char				*ft_jitoa(long long int n);
-char				*ft_zitoa(long long int n);
-*/
+
+//char				*ft_Litoa(long long int n);
+char				*ft_jitoa(intmax_t n);
+char				*ft_zitoa(size_t n);
+
 char				*ft_itoa_base(int value, int base);
 char				*ft_ullitoa_base(unsigned long long value, int base);
+char				*ft_ftoa(double n);
 #endif

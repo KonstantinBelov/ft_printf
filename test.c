@@ -16,8 +16,11 @@ int		main(void)
 	// printf("\n");
 	// printf("%d\n", j);
 
-
+/*
 	printf("%hd", −32768);
 	ft_printf("%hd", −32768);
+*/
+	printf("%lu", -42);
+	printf("\n");
 	return(0);
 }

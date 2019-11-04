@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 //# define SINGLE_%(c) (c == '%' && c + 1 != '%')
 # define FLAGS(c) (c == '#' || c == '0' || c == '-' || c == '+' || c == ' ')
-# define TYPE(c) (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 	'c' || c == '%')
+# define TYPE(c) (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 	'c' || c == '%' || c == 'f')
 # define SIGN(c) (c == '+' || c == '-' || c == ' ')
 # define ZERO(c) (c == "0")
 # define OXX(c) (c == 'o' || c == 'x' || c == 'X')
@@ -59,6 +59,7 @@ void		print_d(t_format *f, va_list *ap, int *charcount);
 void		print_u(t_format *f, va_list *ap, int *charcount);
 void		print_oxx(t_format *f, va_list *ap, int *charcount);
 void		print_p(t_format *f, va_list *ap, int *charcount);
+void		print_f(t_format *f, va_list *ap, int *charcount);
 void		get_d_str(t_format *f, va_list *ap, char **str);
 void		get_u_str(t_format *f, va_list *ap, char **str);
 void		get_oxx_str(t_format *f, va_list *ap, char **str);
@@ -70,7 +71,9 @@ void		print_num_extrawide(t_format *f, int *len, int *charcount, char **str);
 void		str_tolower(char **s);
 void		print_wide_hash(t_format *f, char **w_pad, char **str);
 char		*ft_ullitoa_base_(intmax_t value, int base);
-char		*ft_utoa_(unsigned long long n);
+char		*ft_utoa_(uintmax_t n);
+size_t		ft_numlen_(uintmax_t n);
+char		*ft_ftoa_(double n);
 
 int			main(void);
 //int				main(int ac, char *av[]);
