@@ -17,11 +17,8 @@ int			print_formated(t_format *f, va_list *ap)
 	int			charcount;
 
 	charcount = 0;
-	//f = NULL;
-	//ap = NULL;
-	//charcount += ft_putstr_len((char const *)arg);
 	if (f->specifier == 'c')
-		print_c(f, ap, &charcount);//? printc(f, ap, &charcount) : 1 == 1;
+		print_c(f, ap, &charcount);
 	else if (f->specifier == '%')
 		print_percent(f, &charcount);
 	else if (f->specifier == 's')
@@ -32,8 +29,6 @@ int			print_formated(t_format *f, va_list *ap)
 		print_u(f, ap, &charcount);
 	else if (f->specifier == 'o' || f->specifier == 'x' || f->specifier == 'X')
 		print_oxx(f, ap, &charcount);
-	//else if (f->specifier == 'a')
-	//	return (0);
 	else if (f->specifier == 'p')
 		print_p(f, ap, &charcount);
 	else if (f->specifier == 'f')
@@ -48,7 +43,7 @@ t_format	*parse_format(const char *format, va_list *ap, size_t *i)
 	t_format *f;
     
     f = malloc(sizeof(t_format));
-    (*i)++;    //maybe not
+    (*i)++;
     reset_format(f);
 	parse_flags(f, format, i);
     parse_width(f, format, i, ap);
@@ -67,7 +62,6 @@ int			print_ap(const char *format, va_list *ap)
 
 	charcount = 0;
 	i = 0;
-	//while (format[i])
 	while (i < ft_strlen(format))
 	{
 		if (format[i] == '%')
@@ -82,7 +76,6 @@ int			print_ap(const char *format, va_list *ap)
 			charcount++; 
 			i++;
 		}
-		//i++;
 	}
 	//free(f);
 	return(charcount);

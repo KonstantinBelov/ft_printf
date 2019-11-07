@@ -45,8 +45,6 @@ void         parse_width(t_format *f, const char *format, size_t *i, va_list *ap
 
 void         parse_precision(t_format *f, const char *format, size_t *i, va_list *ap)
 {
-    //int j;
-    
     if (format[*i] == '.')
     {
         (*i)++;
@@ -57,7 +55,6 @@ void         parse_precision(t_format *f, const char *format, size_t *i, va_list
 	    }
         else if(ft_isdigit(format[*i]))
             f->precision = ft_atoi(&(format[*i]));
-            //j = f->precision;
         else
             f->precision = 0;
         while (ft_isdigit(format[*i]))
@@ -105,6 +102,4 @@ void			parse_type(t_format *f, const char *format, size_t *i)
         f->specifier = 'u';
         (*i)++;
     }
-    //if (f->specifier == 'p')
-    //   f->specifier = 'x';
 }

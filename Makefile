@@ -14,9 +14,9 @@ NAME = libftprintf.a
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = ft_printf.c format.c parse.c parse_helpers.c output.c output_d.c output_oxx.c ft_ullitoa_base_.c
+SRC = ft_printf.c format.c parse.c parse_helpers.c output.c output_d.c \
+		output_oxx.c output_f.c ft_ullitoa_base_.c
 
-#OBJ = ft_printf.o second.o
 OBJ = *.o
 
 LIBFT = ./libft/*.c
@@ -26,8 +26,6 @@ HEADER = ft_printf.h
 all: $(NAME)
 
 $(NAME):
-	#gcc -c $(FLAG) $(SRC) ./libft/*.c
-	#ar rcs $(NAME) $(OBJ) ./libft/*.o
 	gcc -c $(FLAG) $(SRC) $(LIBFT)
 	ar rcs $(NAME) $(OBJ)
 

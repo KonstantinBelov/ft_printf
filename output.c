@@ -76,7 +76,6 @@ void		print_c(t_format *f, va_list *ap, int *charcount)
 
 void		print_s(t_format *f, va_list *ap, int *charcount)
 {
-	//char	*s;
 	int		len;
 	char	*str;
 
@@ -91,7 +90,6 @@ void		print_s(t_format *f, va_list *ap, int *charcount)
 		str = ft_strsub((char const *)str, 0, f->precision);
 		len = f->precision;
 	}
-	//str_precision_handler(&str, f, &len);
 	if (f->width > len)
 		print_s_extrawide(f, &len, charcount, &str);
 	else

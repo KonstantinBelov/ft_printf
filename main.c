@@ -461,7 +461,7 @@ int			main(void)
 	printf("Returned value: %d", i);
 	printf("\n");
 	printf("*************************************************************\n");
-*/
+
 	printf("*************************************************************\n");
 	printf("actual_1317:\n");
 	i = ft_printf("%f", 573.924);
@@ -475,5 +475,70 @@ int			main(void)
 	printf("\n");
 	printf("*************************************************************\n");
 	
+	printf("*************************************************************\n");
+	printf("actual_1321:\n");
+	i = ft_printf("%f", -7.00036);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_1321:\n");
+	i = printf("%f", -7.00036);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
+	printf("*************************************************************\n");
+	printf("actual_1322:\n");
+	i = ft_printf("%f", -0.00032);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_1322:\n");
+	i = printf("%f", -0.00032);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
+	printf("*************************************************************\n");
+	printf("actual_1333:\n");
+	i = ft_printf("%f", 0.0894255);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_1333:\n");
+	i = printf("%f", 0.0894255);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
+	printf("*************************************************************\n");
+	printf("actual_1343:\n");
+	i = ft_printf("this %.0f float", 1.6);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_1343:\n");
+	i = printf("this %.0f float", 1.6);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+*/
+	printf("*************************************************************\n");
+	printf("actual_1353:\n");
+	i = ft_printf("this %.1f float", 1.5);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_1353:\n");
+	i = printf("this %.1f float", 1.5);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+
 	return (0);
 }
