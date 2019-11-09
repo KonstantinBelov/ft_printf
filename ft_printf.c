@@ -41,17 +41,17 @@ int			print_formated(t_format *f, va_list *ap)
 t_format	*parse_format(const char *format, va_list *ap, size_t *i)
 {
 	t_format *f;
-    
-    f = malloc(sizeof(t_format));
-    (*i)++;
-    reset_format(f);
+
+	f = malloc(sizeof(t_format));
+	(*i)++;
+	reset_format(f);
 	parse_flags(f, format, i);
-    parse_width(f, format, i, ap);
-    parse_precision(f, format, i, ap);
-    parse_length(f, format, i);
+	parse_width(f, format, i, ap);
+	parse_precision(f, format, i, ap);
+	parse_length(f, format, i);
 	parse_flags(f, format, i);
-    parse_type(f, format, i);
-	return(f);
+	parse_type(f, format, i);
+	return (f);
 }
 
 int			print_ap(const char *format, va_list *ap)
@@ -73,12 +73,12 @@ int			print_ap(const char *format, va_list *ap)
 		else
 		{
 			ft_putchar(format[i]);
-			charcount++; 
+			charcount++;
 			i++;
 		}
 	}
 	//free(f);
-	return(charcount);
+	return (charcount);
 }
 
 int			ft_printf(const char *format, ...)

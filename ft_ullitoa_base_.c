@@ -13,13 +13,14 @@
 #include <string.h>
 #include "ft_printf.h"
 
-char	*ft_ullitoa_base_(intmax_t value, int base)
+char		*ft_ullitoa_base_(intmax_t value, int base)
 {
-	char		*digits = "0123456789ABCDEF";
+	char		*digits;
 	char		*num;
 	intmax_t	n;
 	int			i;
 
+	digits = ft_strdup("0123456789ABCDEF");
 	if (value == 0)
 		return ("0");
 	i = 0;
@@ -40,16 +41,6 @@ char	*ft_ullitoa_base_(intmax_t value, int base)
 	}
 	return (num);
 }
-/*
-#include <stdio.h>
-
-int		main(int ac, char *av[])
-{
-	ac = 0;
-	printf("%s\n", ft_itoa_base(atoi(av[1]), atoi(av[2])));
-	return (0);
-}
-*/
 
 char		*ft_utoa_(uintmax_t n)
 {
@@ -73,8 +64,6 @@ size_t		ft_numlen_(uintmax_t n)
 	size_t		len;
 
 	len = 1;
-	//if (n < 0)
-	//	n *= -1;
 	while (n >= 10)
 	{
 		n /= 10;

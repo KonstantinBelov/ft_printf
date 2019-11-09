@@ -6,7 +6,7 @@
 /*   By: kbelov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:48:35 by kbelov            #+#    #+#             */
-/*   Updated: 2019/10/12 15:30:03 by kbelov           ###   ########.fr       */
+/*   Updated: 2019/11/08 20:49:57 by kbelov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int			ft_printf(const char *format, ...);
 int			print_ap(const char *format, va_list *ap);
 t_format	*parse_format(const char *format, va_list *ap, size_t *i);
 void		reset_format(t_format *f);
-void       	parse_flags(t_format *f, const char *format, size_t *i);
-void        parse_width(t_format *f, const char *format, size_t *i, va_list *ap);
-void        parse_precision(t_format *f, const char *format, size_t *i, va_list *ap);
+void		parse_flags(t_format *f, const char *format, size_t *i);
+void		parse_width(t_format *f, const char *format, size_t *i, va_list *ap);
+void		parse_precision(t_format *f, const char *format, size_t *i, va_list *ap);
 void		parse_length(t_format *f, const char *format, size_t *i);
 void		parse_type(t_format *f, const char *format, size_t *i);
 int			print_formated(t_format *f, va_list *ap);
@@ -77,3 +77,4 @@ char		*ft_ftoa_nopad(double n, t_format *f);
 int			main(void);
 
 #endif
+

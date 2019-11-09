@@ -6,7 +6,7 @@
 /*   By: kbelov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 18:41:00 by kbelov            #+#    #+#             */
-/*   Updated: 2019/10/13 18:41:02 by kbelov           ###   ########.fr       */
+/*   Updated: 2019/11/08 20:45:37 by kbelov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			ft_putstr_len(char *s)
 {
 	int		len;
-	
+
 	len = 0;
 	if (s)
 	{
@@ -25,13 +25,13 @@ int			ft_putstr_len(char *s)
 			len++;
 		}
 	}
-	return(len);
+	return (len);
 }
 
 void		print_percent(t_format *f, int *charcount)
 {
-	int len;
-	char *c;
+	int		len;
+	char	*c;
 
 	len = 1;
 	c = ft_strdup("%");
@@ -47,7 +47,7 @@ void		print_percent(t_format *f, int *charcount)
 
 void		print_c(t_format *f, va_list *ap, int *charcount)
 {
-	char *s;
+	char	*s;
 
 	if (f->width)
 	{
@@ -71,7 +71,7 @@ void		print_c(t_format *f, va_list *ap, int *charcount)
 		if (s)
 			ft_putstr(s);
 		ft_putchar((char)va_arg(*ap, int));
-	}	
+	}
 }
 
 void		print_s(t_format *f, va_list *ap, int *charcount)
@@ -102,7 +102,10 @@ void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
 	char *w_pad;
 
 	w_pad = ft_strnew(f->width - *len);
-	f->null && !f->minus ? ft_memset(w_pad, '0', f->width - *len) : ft_memset(w_pad, ' ', f->width - *len);
+	if (f->null && !f->minus)
+		ft_memset(w_pad, '0', f->width - *len);
+	else
+		ft_memset(w_pad, ' ', f->width - *len);
 	(*charcount) += f->width;
 	if (f->minus)
 	{
@@ -115,3 +118,4 @@ void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
 		ft_putstr(*str);
 	}
 }
+

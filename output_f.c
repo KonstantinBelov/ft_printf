@@ -6,7 +6,7 @@
 /*   By: kbelov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 18:46:16 by kbelov            #+#    #+#             */
-/*   Updated: 2019/11/06 18:46:24 by kbelov           ###   ########.fr       */
+/*   Updated: 2019/11/08 20:58:35 by kbelov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ void		print_f(t_format *f, va_list *ap, int *charcount)
 	if (f->precision == -1 || f->precision == 6)
 		str = ft_strdup(ft_ftoa_(n));
 	if (f->precision == 0)
-		str = ft_strdup(ft_itoa(ajust_floats_precision_zero(&n , f)));
-    if (f->precision < 6 && f->precision > 0)
-		str = ft_strdup(ft_ftoa_nopad(ajust_floats_precision(&n , f), f));
-    /*
-	if (str && f->plus && str[0] != '-')
+		str = ft_strdup(ft_itoa(ajust_floats_precision_zero(&n, f)));
+	if (f->precision < 6 && f->precision > 0)
+		str = ft_strdup(ft_ftoa_nopad(ajust_floats_precision(&n, f), f));
+	/*if (str && f->plus && str[0] != '-')
 		str = ft_strjoin("+", str);
 	if (f->space && str && !f->plus && str[0] != '-')
 		str = ft_strjoin(" ", str);
@@ -72,7 +71,7 @@ char		*ft_ftoa_(double n)
 		ft_memset(f_pad, '0', 6 - len_f);
 		fp = ft_strjoin(f_pad, fp);
 	}
-	return(ft_strjoin(ip, fp));
+	return (ft_strjoin(ip, fp));
 }
 
 char		*ft_itoa_(int n)
@@ -104,7 +103,7 @@ char		*ft_itoa_(int n)
 	return (a);
 }
 
-int		ajust_floats_precision_zero(double *n, t_format *f)
+int			ajust_floats_precision_zero(double *n, t_format *f)
 {
 	int	i;
 	int m;
@@ -128,36 +127,33 @@ int		ajust_floats_precision_zero(double *n, t_format *f)
 	return(m);
 }
 
-double	ajust_floats_precision(double *n, t_format *f)
+double		ajust_floats_precision(double *n, t_format *f)
 {
 	int	i;
 	int m;
 
-	i = 6;
-	while (i > 0)
-	{
+	i = 7;
+	while (--i > 0)
 		*n *= 10;
-		i--;
-	}
 	m = *n;
 	while (i < 6)
 	{
-        if (i < 6 - f->precision)
-        {
-            if (m % 10 >= 5)
-                m += 10;
-            if (m % 10 <= -5)
-                m -= 10;
-            m /= 10;
-        }
-        else
-        {
-		    *n = m;
-            *n /= 10;
-        }
+		if (i < 6 - f->precision)
+		{
+			if (m % 10 >= 5)
+				m += 10;
+			if (m % 10 <= -5)
+				m -= 10;
+			m /= 10;
+		}
+		else
+		{
+			*n = m;
+			*n /= 10;
+		}
 		i++;
 	}
-	return(*n);
+	return (*n);
 }
 
 char		*ft_ftoa_nopad(double n, t_format *f)
@@ -196,5 +192,6 @@ char		*ft_ftoa_nopad(double n, t_format *f)
 		ft_memset(f_pad, '0', 6 - len_f);
 		fp = ft_strjoin(f_pad, fp);
 	}*/
-	return(ft_strjoin(ip, fp));
+	return (ft_strjoin(ip, fp));
 }
+

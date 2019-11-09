@@ -6,7 +6,7 @@
 /*   By: kbelov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:34:34 by kbelov            #+#    #+#             */
-/*   Updated: 2019/10/12 15:38:08 by kbelov           ###   ########.fr       */
+/*   Updated: 2019/11/08 20:41:53 by kbelov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		apply_precision(t_format *f, int *len, char **str)
 	char	*tmp;
 	int		pad_len;
 	char	*first;
-	
+
 	first = malloc(sizeof(char) * 2);
 	first = ft_strncpy(first, *str, 1);
 	if (SIGN(*str[0]) ? f->precision >= *len : f->precision > *len)
@@ -104,3 +104,4 @@ void		apply_precision(t_format *f, int *len, char **str)
 			*str = ft_strjoin(p_pad, *str);
 	}
 }
+

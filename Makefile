@@ -47,15 +47,3 @@ test: lib
 
 lldb: lib
 	gcc -g $(FLAG) $(SRC) main.c libft/libft.a -o ft_printf_lldb
-
-lldb_run:
-	lldb ft_printf_lldb "Hello World!"
-
-dev:
-	gcc $(FLAG) main.c verify.c prepare_dev_mode.c fillit_dev_mode.c libft/libft.a -o fillit_dev_mode #-fsanitize=address
-
-dev_lldb:
-	gcc -g $(FLAG) main.c verify.c prepare_dev_mode.c fillit_dev_mode.c libft/libft.a -o fillit_dev_lldb
-
-no_comment:
-	gcc $(FLAG) main.c verify.c prepare_dev_mode.c fillit_no_comment.c libft/libft.a -o fillit_no_comment
