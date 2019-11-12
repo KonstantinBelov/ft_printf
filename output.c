@@ -72,6 +72,7 @@ void		print_c(t_format *f, va_list *ap, int *charcount)
 			ft_putstr(s);
 		ft_putchar((char)va_arg(*ap, int));
 	}
+	free(s);
 }
 
 void		print_s(t_format *f, va_list *ap, int *charcount)
@@ -95,6 +96,7 @@ void		print_s(t_format *f, va_list *ap, int *charcount)
 	else
 		(*charcount) += ft_putstr_len(str);
 	//ft_strdel(&str);
+	//free(str);
 }
 
 void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
@@ -117,5 +119,6 @@ void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
 		ft_putstr(w_pad);
 		ft_putstr(*str);
 	}
+	free(w_pad);
 }
 

@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = ft_printf.c format.c parse.c parse_helpers.c output.c output_d.c \
+SRC = ft_printf.c format.c parse.c output.c output_d.c \
 		output_oxx.c output_f.c ft_ullitoa_base_.c
 
 OBJ = *.o

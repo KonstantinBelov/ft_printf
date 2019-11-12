@@ -38,7 +38,7 @@ void		print_f(t_format *f, va_list *ap, int *charcount)
 		print_num_extrawide(f, &len, charcount, &str);
 	else*/
 		(*charcount) += ft_putstr_len(str);
-	//ft_strdel(&str);
+	ft_strdel(&str);
 }
 
 char		*ft_ftoa_(double n)
@@ -70,6 +70,7 @@ char		*ft_ftoa_(double n)
 		f_pad = ft_strnew(6 - len_f);
 		ft_memset(f_pad, '0', 6 - len_f);
 		fp = ft_strjoin(f_pad, fp);
+		ft_strdel(&f_pad);
 	}
 	return (ft_strjoin(ip, fp));
 }
@@ -192,6 +193,9 @@ char		*ft_ftoa_nopad(double n, t_format *f)
 		ft_memset(f_pad, '0', 6 - len_f);
 		fp = ft_strjoin(f_pad, fp);
 	}*/
-	return (ft_strjoin(ip, fp));
+	//return (ft_strjoin(ip, fp));
+	ip = ft_strjoin(ip, fp);
+	ft_strdel(&fp);
+	return (ip);
 }
 

@@ -79,6 +79,7 @@ void		print_num_extrawide(t_format *f, int *len, int *charcount, char **str)
 			ft_putstr(*str);
 		}
 	}
+	ft_strdel(&w_pad);
 }
 
 void		print_p(t_format *f, va_list *ap, int *charcount)

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+//#include "libft.h"
 
 char	*ft_ullitoa_base(unsigned long long value, int base)
 {
@@ -37,6 +38,7 @@ char	*ft_ullitoa_base(unsigned long long value, int base)
 		num[i] = digits[value % base];
 		value /= base;
 	}
+	//ft_strdel(&digits);
 	return (num);
 }
 /*

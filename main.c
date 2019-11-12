@@ -125,7 +125,6 @@ int			main(void)
 	printf("\n");
 	printf("*************************************************************\n");
 
-
 	printf("*************************************************************\n");
 	printf("actual_40:\n");
 	i = ft_printf("%#08x", 42);
@@ -229,7 +228,20 @@ int			main(void)
 	printf("expected_0136:\n");
 	//printf("%hd", -32769);
 	printf("\n");
-
+*/
+	printf("*************************************************************\n");
+	printf("actual_125:\n");
+	i = ft_printf("%0+5d", 42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_125:\n");
+	i = printf("%0+5d", 42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+/*
 	printf("*************************************************************\n");
 	printf("actual_136:\n");
 	i = ft_printf("%hd", -32769);
@@ -526,7 +538,7 @@ int			main(void)
 	printf("Returned value: %d", i);
 	printf("\n");
 	printf("*************************************************************\n");
-*/
+
 	printf("*************************************************************\n");
 	printf("actual_1353:\n");
 	i = ft_printf("this %.1f float", 1.5);
@@ -539,6 +551,6 @@ int			main(void)
 	printf("Returned value: %d", i);
 	printf("\n");
 	printf("*************************************************************\n");
-
+*/
 	return (0);
 }

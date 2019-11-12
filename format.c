@@ -99,9 +99,14 @@ void		apply_precision(t_format *f, int *len, char **str)
 			(*str)++;
 			*str = ft_strjoin(tmp, *str);
 			(*len)++;
+			//free(tmp);
+			ft_strdel(&tmp);
 		}
 		else
 			*str = ft_strjoin(p_pad, *str);
+		//free(p_pad);
+		ft_strdel(&p_pad);
 	}
+	//free(first);
+	ft_strdel(&first);
 }
-

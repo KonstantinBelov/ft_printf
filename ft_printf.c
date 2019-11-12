@@ -77,7 +77,7 @@ int			print_ap(const char *format, va_list *ap)
 			i++;
 		}
 	}
-	//free(f);
+	free(f);
 	return (charcount);
 }
 

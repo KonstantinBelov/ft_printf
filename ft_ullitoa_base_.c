@@ -39,6 +39,7 @@ char		*ft_ullitoa_base_(intmax_t value, int base)
 		num[i] = digits[value % base];
 		value /= base;
 	}
+	//free(digits);
 	return (num);
 }
 
@@ -57,6 +58,7 @@ char		*ft_utoa_(uintmax_t n)
 		n = n / 10;
 	}
 	return (a);
+	//ft_strdel(&a);
 }
 
 size_t		ft_numlen_(uintmax_t n)

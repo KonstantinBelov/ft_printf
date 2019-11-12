@@ -97,6 +97,7 @@ void		str_tolower(char **s)
 		tmp++;
 	}
 	//free(tmp);
+	//ft_strdel(&tmp);
 }
 
 void		print_wide_hash(t_format *f, char **w_pad, char **str)
