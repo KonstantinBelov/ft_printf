@@ -12,10 +12,10 @@
 
 #include "ft_printf.h"
 
-void    parse_flags(t_format *f, const char *restrict format, size_t *i)
+void	parse_flags(t_format *f, const char *restrict format, size_t *i)
 {
 	while (FLAGS(format[*i]))
-	{    
+	{
 		if (format[*i] == '-')
 			f->minus = 1;
 		else if (format[*i] == '+')
@@ -37,7 +37,7 @@ void	parse_width(t_format *f, const char *format, size_t *i, va_list *ap)
 		f->width = va_arg(*ap, int);
 		i++;
 	}
-	else if(ft_isdigit(format[*i]))
+	else if (ft_isdigit(format[*i]))
 		f->width = ft_atoi(&(format[*i]));
 	while (ft_isdigit(format[*i]))
 		(*i)++;
@@ -53,7 +53,7 @@ void	parse_precision(t_format *f, const char *format, size_t *i, va_list *ap)
 			f->precision = va_arg(*ap, int);
 			(*i)++;
 		}
-		else if(ft_isdigit(format[*i]))
+		else if (ft_isdigit(format[*i]))
 			f->precision = ft_atoi(&(format[*i]));
 		else
 			f->precision = 0;
@@ -66,14 +66,14 @@ void	parse_length(t_format *f, const char *format, size_t *i)
 {
 	if (format[*i] == 'h')
 	{
-		if(format[*i + 1] == 'h')
+		if (format[*i + 1] == 'h')
 			f->length = 2;
 		else
 			f->length = 1;
 	}
 	else if (format[*i] == 'l')
 	{
-		if(format[*i + 1] == 'l')
+		if (format[*i + 1] == 'l')
 			f->length = 4;
 		else
 			f->length = 3;

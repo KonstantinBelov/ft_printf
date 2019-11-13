@@ -34,10 +34,8 @@ void		get_d_str(t_format *f, va_list *ap, char **str)
 		*str = ft_strdup(ft_hhitoa((signed char)va_arg(*ap, int)));
 	else if (f->length == 3)
 		*str = ft_strdup(ft_litoa(va_arg(*ap, long int)));
-	else if (f->length == 4)
+	else if (f->length == 4 || f->length == 5)
 		*str = ft_strdup(ft_llitoa(va_arg(*ap, long long int)));
-	//else if (f->length == 5)
-	//	*str = ft_strdup(ft_Litoa(va_arg(*ap, long long int)));
 	else if (f->length == 7)
 		*str = ft_strdup(ft_jitoa(va_arg(*ap, intmax_t)));
 	else if (f->length == 9)
@@ -58,11 +56,9 @@ void		get_u_str(t_format *f, va_list *ap, char **str)
 	else if (f->length == 2)
 		*str = ft_strdup(ft_utoa((unsigned char)va_arg(*ap, unsigned int)));
 	else if (f->length == 3)
-		*str = ft_strdup(ft_utoa_(va_arg(*ap, unsigned long int)));
-	else if (f->length == 4)
+		*str = ft_strdup(ft_utoa(va_arg(*ap, unsigned long int)));
+	else if (f->length == 4 || f->length == 5)
 		*str = ft_strdup(ft_utoa(va_arg(*ap, unsigned long long)));
-	//else if (f->length == 5)
-	//	*str = ft_strdup(ft_Litoa(va_arg(*ap, long long int)));
 	else if (f->length == 7)
 		*str = ft_strdup(ft_jitoa(va_arg(*ap, long long int)));
 	else if (f->length == 9)
@@ -99,14 +95,11 @@ void		apply_precision(t_format *f, int *len, char **str)
 			(*str)++;
 			*str = ft_strjoin(tmp, *str);
 			(*len)++;
-			//free(tmp);
 			ft_strdel(&tmp);
 		}
 		else
 			*str = ft_strjoin(p_pad, *str);
-		//free(p_pad);
 		ft_strdel(&p_pad);
 	}
-	//free(first);
 	ft_strdel(&first);
 }

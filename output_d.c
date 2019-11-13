@@ -17,6 +17,7 @@ void		print_d(t_format *f, va_list *ap, int *charcount)
 	int		len;
 	char	*str;
 
+	//str = malloc(sizeof(char));
 	get_d_str(f, ap, &str);
 	if (str && f->plus && str[0] != '-')
 		str = ft_strjoin("+", str);
@@ -33,6 +34,7 @@ void		print_d(t_format *f, va_list *ap, int *charcount)
 	else
 		(*charcount) += ft_putstr_len(str);
 	//ft_strdel(&str);
+	//free(str);
 }
 
 void		print_u(t_format *f, va_list *ap, int *charcount)
@@ -95,8 +97,6 @@ void		print_p(t_format *f, va_list *ap, int *charcount)
 	if (!f->precision && ft_strcmp(str, "0") == 0 && !(f->hash && f->specifier == 'o'))
 		str = ft_strdup("");
 	len = ft_strlen(str);
-	//if (ft_strcmp(str, "0") == 0 || ft_strcmp(str, "") == 0)
-	//	f->hash = 0;
 	apply_precision(f, &len, &str);
 	if (ft_strlen(str) == 7)
 		str = ft_strjoin("0x10", str);
@@ -107,6 +107,4 @@ void		print_p(t_format *f, va_list *ap, int *charcount)
 		print_num_extrawide(f, &len, charcount, &str);
 	else
 		(*charcount) += ft_putstr_len(str);
-	//ft_strdel(&str);
 }
-

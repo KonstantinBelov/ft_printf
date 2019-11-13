@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_ullitoa_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbelov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-//#include "libft.h"
+#include "libft.h"
 
 char	*ft_ullitoa_base(unsigned long long value, int base)
 {
-	char		*digits = "0123456789ABCDEF";
+	char		*digits;
 	char		*num;
 	intmax_t	n;
 	int			i;
 
+	digits = ft_strdup("0123456789ABCDEF");
 	if (value == 0)
 		return ("0");
 	i = 0;
@@ -38,16 +38,5 @@ char	*ft_ullitoa_base(unsigned long long value, int base)
 		num[i] = digits[value % base];
 		value /= base;
 	}
-	//ft_strdel(&digits);
 	return (num);
 }
-/*
-#include <stdio.h>
-
-int		main(int ac, char *av[])
-{
-	ac = 0;
-	printf("%s\n", ft_itoa_base(atoi(av[1]), atoi(av[2])));
-	return (0);
-}
-*/

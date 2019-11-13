@@ -13,7 +13,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define FLAGS(c) (c == '#' || c == '0' || c == '-' || c == '+' || c == ' ')
-# define TYPE(c) (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 	'c' || c == '%' || c == 'f')
+# define TYPE(c) (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o' || \
+		c == 'u' || c == 'x' || c == 'X' || c == 	'c' || c == '%' || c == 'f')
 # define SIGN(c) (c == '+' || c == '-' || c == ' ')
 # define ZERO(c) (c == "0")
 # define OXX(c) (c == 'o' || c == 'x' || c == 'X')
@@ -61,15 +62,11 @@ void		print_f(t_format *f, va_list *ap, int *charcount);
 void		get_d_str(t_format *f, va_list *ap, char **str);
 void		get_u_str(t_format *f, va_list *ap, char **str);
 void		get_oxx_str(t_format *f, va_list *ap, char **str);
+//void		get_xxp_str(t_format *f, va_list *ap, char **str);
 void		apply_precision(t_format *f, int *len, char **str);
 void		print_num_extrawide(t_format *f, int *len, int *charcount, char **str);
 void		str_tolower(char **s);
 void		print_wide_hash(t_format *f, char **w_pad, char **str);
-char		*ft_ullitoa_base_(intmax_t value, int base);
-char		*ft_utoa_(uintmax_t n);
-size_t		ft_numlen_(uintmax_t n);
-char		*ft_ftoa_(double n);
-char		*ft_itoa_(int n);
 double		ajust_floats_precision(double *n, t_format *f);
 int			ajust_floats_precision_zero(double *n, t_format *f);
 char		*ft_ftoa_nopad(double n, t_format *f);
@@ -77,4 +74,3 @@ char		*ft_ftoa_nopad(double n, t_format *f);
 int			main(void);
 
 #endif
-
