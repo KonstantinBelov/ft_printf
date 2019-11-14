@@ -14,8 +14,7 @@ NAME = libftprintf.a
 
 FLAG = -Wall -Wextra -Werror
 
-SRC = ft_printf.c format.c parse.c output.c output_d.c \
-		output_oxx.c output_f.c #ft_ullitoa_base_.c
+SRC = ft_printf.c format.c parse.c output.c output_d.c output_oxx.c output_f.c
 
 OBJ = *.o
 
@@ -43,7 +42,11 @@ fclean: clean
 re: fclean all
 
 test: lib
-	gcc $(FLAG) $(SRC) ../ft_printf_2/main.c libft/libft.a -o ft_printf_makefile
+	gcc $(FLAG) $(SRC) main.c libft/libft.a -o ft_printf_makefile
 
 lldb: lib
-	gcc -g $(FLAG) $(SRC) ../ft_printf_2/main.c libft/libft.a -o ft_printf_lldb
+	gcc -g $(FLAG) $(SRC) main.c libft/libft.a -o ft_printf_lldb
+
+norme: 
+	norminette ft_printf.c format.c parse.c output.c output_d.c \
+		output_oxx.c output_f.c ft_printf.h Makefile

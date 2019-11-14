@@ -30,34 +30,34 @@ void	parse_flags(t_format *f, const char *restrict format, size_t *i)
 	}
 }
 
-void	parse_width(t_format *f, const char *format, size_t *i, va_list *ap)
+void	parse_wid(t_format *f, const char *ft, size_t *i, va_list *ap)
 {
-	if (format[*i] == '*')
+	if (ft[*i] == '*')
 	{
 		f->width = va_arg(*ap, int);
 		i++;
 	}
-	else if (ft_isdigit(format[*i]))
-		f->width = ft_atoi(&(format[*i]));
-	while (ft_isdigit(format[*i]))
+	else if (ft_isdigit(ft[*i]))
+		f->width = ft_atoi(&(ft[*i]));
+	while (ft_isdigit(ft[*i]))
 		(*i)++;
 }
 
-void	parse_precision(t_format *f, const char *format, size_t *i, va_list *ap)
+void	parse_prec(t_format *f, const char *ft, size_t *i, va_list *ap)
 {
-	if (format[*i] == '.')
+	if (ft[*i] == '.')
 	{
 		(*i)++;
-		if (format[*i] == '*')
+		if (ft[*i] == '*')
 		{
 			f->precision = va_arg(*ap, int);
 			(*i)++;
 		}
-		else if (ft_isdigit(format[*i]))
-			f->precision = ft_atoi(&(format[*i]));
+		else if (ft_isdigit(ft[*i]))
+			f->precision = ft_atoi(&(ft[*i]));
 		else
 			f->precision = 0;
-		while (ft_isdigit(format[*i]))
+		while (ft_isdigit(ft[*i]))
 			(*i)++;
 	}
 }
@@ -92,7 +92,7 @@ void	parse_length(t_format *f, const char *format, size_t *i)
 
 void	parse_type(t_format *f, const char *format, size_t *i)
 {
-	if (TYPE(format[*i]))
+	if (TYPE1(format[*i]) || TYPE2(format[*i]) || TYPE3(format[*i]))
 	{
 		f->specifier = format[*i];
 		(*i)++;

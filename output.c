@@ -36,7 +36,7 @@ void		print_percent(t_format *f, int *charcount)
 	len = 1;
 	c = ft_strdup("%");
 	if (f->width > 1)
-		print_s_extrawide(f, &len, charcount, &c);
+		print_s_wid(f, &len, charcount, &c);
 	else
 	{
 		ft_putchar('%');
@@ -90,12 +90,12 @@ void		print_s(t_format *f, va_list *ap, int *charcount)
 		len = f->precision;
 	}
 	if (f->width > len)
-		print_s_extrawide(f, &len, charcount, &str);
+		print_s_wid(f, &len, charcount, &str);
 	else
 		(*charcount) += ft_putstr_len(str);
 }
 
-void		print_s_extrawide(t_format *f, int *len, int *charcount, char **str)
+void		print_s_wid(t_format *f, int *len, int *charcount, char **str)
 {
 	char *w_pad;
 

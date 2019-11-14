@@ -12,6 +12,19 @@
 
 #include "ft_printf.h"
 
+void		str_tolower(char **s)
+{
+	char	*tmp;
+
+	tmp = *s;
+	while (*tmp != '\0')
+	{
+		if (*tmp >= 'A' && *tmp <= 'Z')
+			*tmp += 32;
+		tmp++;
+	}
+}
+
 int			print_formated(t_format *f, va_list *ap)
 {
 	int			charcount;
@@ -46,8 +59,8 @@ t_format	*parse_format(const char *format, va_list *ap, size_t *i)
 	(*i)++;
 	reset_format(f);
 	parse_flags(f, format, i);
-	parse_width(f, format, i, ap);
-	parse_precision(f, format, i, ap);
+	parse_wid(f, format, i, ap);
+	parse_prec(f, format, i, ap);
 	parse_length(f, format, i);
 	parse_flags(f, format, i);
 	parse_type(f, format, i);

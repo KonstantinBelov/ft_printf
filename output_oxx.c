@@ -17,13 +17,7 @@ void		print_oxx(t_format *f, va_list *ap, int *charcount)
 	int		len;
 	char	*str;
 
-	get_oxx_str(f, ap, &str);
-	if (str && f->plus && str[0] != '-')
-		str = ft_strjoin("+", str);
-	if (f->space && str && !f->plus && str[0] != '-')
-		str = ft_strjoin(" ", str);
-	if (!f->precision && ft_strcmp(str, "0") == 0 && !(f->hash && f->specifier == 'o'))
-		str = ft_strdup("");
+	get_oxxp_str(f, ap, &str);
 	len = ft_strlen(str);
 	if (ft_strcmp(str, "0") == 0 || ft_strcmp(str, "") == 0)
 		f->hash = 0;
@@ -39,113 +33,73 @@ void		print_oxx(t_format *f, va_list *ap, int *charcount)
 	}
 	len = ft_strlen(str);
 	if (f->width > len)
-    	print_num_extrawide(f, &len, charcount, &str);
+		print_num_wide(f, &len, charcount, &str);
 	else
 		(*charcount) += ft_putstr_len(str);
 }
 
-void		get_oxx_str(t_format *f, va_list *ap, char **str)
+void		get_oxxp_str(t_format *f, va_list *ap, char **str)
 {
 	if (f->specifier == 'o')
-	{
-		if (f->length == 1)
-			*str = ft_strdup(ft_ullitoa_base((unsigned short)va_arg(*ap, int), 8));
-		else if (f->length == 2)
-			*str = ft_strdup(ft_ullitoa_base((unsigned char)va_arg(*ap, int), 8));
-		else if (f->length == 3)
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long int), 8));
-		else if (f->length == 4)
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long long), 8));
-		else
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, intmax_t), 8));
-	}
+		get_o_str(f, ap, str);
 	else if (f->specifier == 'x' || f->specifier == 'X' || f->specifier == 'p')
-	{
-		if (f->length == 1)
-			*str = ft_strdup(ft_ullitoa_base((unsigned short)va_arg(*ap, int), 16));
-		else if (f->length == 2)
-			*str = ft_strdup(ft_ullitoa_base((unsigned char)va_arg(*ap, int), 16));
-		else if (f->length == 3)
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long int), 16));
-		else if (f->length == 4)
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long long), 16));
-		else
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned int), 16));
-		if (f->specifier == 'x' || f->specifier == 'p')
-			str_tolower(str);
-	}		
+		get_xxp_str(f, ap, str);
+	else if (f->specifier == 'b')
+		get_b_str(f, ap, str);
 	if (!(*str))
 	{
 		*str = malloc(sizeof(char) * 7);
 		*str = "(null)";
 	}
+	if (*str && f->plus && (*str)[0] != '-')
+		*str = ft_strjoin("+", *str);
+	if (f->space && *str && !f->plus && (*str)[0] != '-')
+		*str = ft_strjoin(" ", *str);
+	if (!f->precision && ft_strcmp(*str, "0") == 0 &&
+		!(f->hash && f->specifier == 'o'))
+		*str = ft_strdup("");
 }
-/*
+
+void		get_o_str(t_format *f, va_list *ap, char **str)
+{
+	if (f->length == 1)
+		*str = ft_strdup(ft_ullitoa_base((unsigned short)va_arg(*ap, int), 8));
+	else if (f->length == 2)
+		*str = ft_strdup(ft_ullitoa_base((unsigned char)va_arg(*ap, int), 8));
+	else if (f->length == 3)
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long int), 8));
+	else if (f->length == 4)
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long long), 8));
+	else
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, intmax_t), 8));
+}
+
 void		get_xxp_str(t_format *f, va_list *ap, char **str)
 {
-	if (f->specifier == 'o')
-	{
-		if (f->length == 1)
-			*str = ft_strdup(ft_ullitoa_base((unsigned short)va_arg(*ap, int), 8));
-		else if (f->length == 2)
-			*str = ft_strdup(ft_ullitoa_base((unsigned char)va_arg(*ap, int), 8));
-		else if (f->length == 3)
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long int), 8));
-		else if (f->length == 4)
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long long), 8));
-		else
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, intmax_t), 8));
-	}
-	else if (f->specifier == 'x' || f->specifier == 'X' || f->specifier == 'p')
-	{
-		if (f->length == 1)
-			*str = ft_strdup(ft_ullitoa_base((unsigned short)va_arg(*ap, int), 16));
-		else if (f->length == 2)
-			*str = ft_strdup(ft_ullitoa_base((unsigned char)va_arg(*ap, int), 16));
-		else if (f->length == 3)
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long int), 16));
-		else if (f->length == 4)
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long long), 16));
-		else
-			*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned int), 16));
-		if (f->specifier == 'x' || f->specifier == 'p')
-			str_tolower(str);
-	}		
-	if (!(*str))
-	{
-		*str = malloc(sizeof(char) * 7);
-		*str = "(null)";
-	}
-}
-*/
-void		str_tolower(char **s)
-{
-	char	*tmp;
-
-	tmp = *s;
-	while (*tmp != '\0')
-	{
-		if (*tmp >= 'A' && *tmp <= 'Z')
-			*tmp += 32;
-		tmp++;
-	}
+	if (f->length == 1)
+		*str = ft_strdup(ft_ullitoa_base((unsigned short)va_arg(*ap, int), 16));
+	else if (f->length == 2)
+		*str = ft_strdup(ft_ullitoa_base((unsigned char)va_arg(*ap, int), 16));
+	else if (f->length == 3)
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long int), 16));
+	else if (f->length == 4)
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long long), 16));
+	else
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned int), 16));
+	if (f->specifier == 'x' || f->specifier == 'p')
+		str_tolower(str);
 }
 
-void		print_wide_hash(t_format *f, char **w_pad, char **str)
+void		get_b_str(t_format *f, va_list *ap, char **str)
 {
-	if (f->specifier == 'o')
-		ft_putstr("0");
-	else if (f->specifier == 'x')
-	{
-		ft_putstr("0x");
-		(*str)++;
-	}
-	else if (f->specifier == 'X')
-	{
-		ft_putstr("0X");
-		(*str)++;
-	}
-	(*str)++;
-	ft_putstr(*w_pad);
-	ft_putstr(*str);
+	if (f->length == 1)
+		*str = ft_strdup(ft_ullitoa_base((unsigned short)va_arg(*ap, int), 2));
+	else if (f->length == 2)
+		*str = ft_strdup(ft_ullitoa_base((unsigned char)va_arg(*ap, int), 2));
+	else if (f->length == 3)
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long int), 2));
+	else if (f->length == 4)
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, unsigned long long), 2));
+	else
+		*str = ft_strdup(ft_ullitoa_base(va_arg(*ap, intmax_t), 2));
 }

@@ -75,7 +75,6 @@ void		get_u_str(t_format *f, va_list *ap, char **str)
 void		apply_precision(t_format *f, int *len, char **str)
 {
 	char	*p_pad;
-	char	*tmp;
 	int		pad_len;
 	char	*first;
 
@@ -90,16 +89,21 @@ void		apply_precision(t_format *f, int *len, char **str)
 		p_pad = ft_strnew(pad_len);
 		ft_memset(p_pad, '0', pad_len);
 		if (SIGN(*str[0]))
-		{
-			tmp = ft_strjoin(first, p_pad);
-			(*str)++;
-			*str = ft_strjoin(tmp, *str);
-			(*len)++;
-			ft_strdel(&tmp);
-		}
+			add_sign(str, first, p_pad, len);
 		else
 			*str = ft_strjoin(p_pad, *str);
 		ft_strdel(&p_pad);
 	}
 	ft_strdel(&first);
+}
+
+void		add_sign(char **str, char *first, char *p_pad, int *len)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(first, p_pad);
+	(*str)++;
+	*str = ft_strjoin(tmp, *str);
+	(*len)++;
+	ft_strdel(&tmp);
 }

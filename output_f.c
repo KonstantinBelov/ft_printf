@@ -14,7 +14,7 @@
 
 void		print_f(t_format *f, va_list *ap, int *charcount)
 {
-	char    *str;
+	char	*str;
 	double	n;
 
 	n = va_arg(*ap, double);
@@ -49,7 +49,7 @@ int			ajust_floats_precision_zero(double *n, t_format *f)
 		m /= 10;
 		i++;
 	}
-	return(m);
+	return (m);
 }
 
 double		ajust_floats_precision(double *n, t_format *f)
@@ -87,17 +87,36 @@ char		*ft_ftoa_nopad(double n, t_format *f)
 	char		*fp;
 	intmax_t	i;
 
-    i = 0;
+	i = 0;
 	ip = ft_strjoin(ft_itoa(n), ".");
 	if (n < 0 && (int)n == 0)
 		ip = ft_strjoin("-", ip);
 	if (n < 0)
 		n *= -1;
-    n -= (int)n;
-    while (++i <= f->precision)
-        n *= 10;
+	n -= (int)n;
+	while (++i <= f->precision)
+		n *= 10;
 	fp = ft_itoa(n);
 	ip = ft_strjoin(ip, fp);
 	ft_strdel(&fp);
 	return (ip);
+}
+
+void		print_wide_hash(t_format *f, char **w_pad, char **str)
+{
+	if (f->specifier == 'o')
+		ft_putstr("0");
+	else if (f->specifier == 'x')
+	{
+		ft_putstr("0x");
+		(*str)++;
+	}
+	else if (f->specifier == 'X')
+	{
+		ft_putstr("0X");
+		(*str)++;
+	}
+	(*str)++;
+	ft_putstr(*w_pad);
+	ft_putstr(*str);
 }
