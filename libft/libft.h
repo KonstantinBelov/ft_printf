@@ -109,11 +109,11 @@ char				*ft_hhitoa(signed char n);
 char				*ft_litoa(long int n);
 char				*ft_llitoa(long long int n);
 
-//char				*ft_Litoa(long long int n);
 char				*ft_jitoa(intmax_t n);
 char				*ft_zitoa(size_t n);
 
 char				*ft_itoa_base(int value, int base);
+int					ft_itoa_base2(int *sign, int *value, int *n, int *base);
 char				*ft_ullitoa_base(unsigned long long value, int base);
 char				*ft_ftoa(long double n);
 #endif

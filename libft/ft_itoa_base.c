@@ -10,34 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_itoa_base(int value, int base)
 {
-	char	*digits = "0123456789ABCDEF";
+	char	*digits;
 	char	*num;
 	int		n;
 	int		i;
 	int		sign;
 
+	digits = ft_strdup("0123456789ABCDEF");
 	if (value == -2147483648 && base == 10)
-		return ("-2147483648");
+		return (ft_strdup("-2147483648"));
 	if (value == 0)
-		return ("0");
-	sign = 1;
-	i = 0;
-	if (value < 0)
-	{
-		sign = -1;
-		value *= -1;
-		i++;
-	}
-	n = value;
-	while (n)
-	{
-		n /= base;
-		i++;
-	}
+		return (ft_strdup("0"));
+	i = ft_itoa_base2(&sign, &value, &n, &base);
 	if (!(num = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	num[i] = '\0';
@@ -47,20 +35,25 @@ char	*ft_itoa_base(int value, int base)
 		num[i] = digits[value % base];
 		value /= base;
 	}
-	if (sign == -1)
-	{
-		i--;
-		num[i] = '-';
-	}
+	(sign == -1) ? i-- : 1;
+	(sign == -1) ? num[i] = '-' : 1;
 	return (num);
 }
-/*
-#include <stdio.h>
 
-int		main(int ac, char *av[])
+int		ft_itoa_base2(int *sign, int *value, int *n, int *base)
 {
-	ac = 0;
-	printf("%s\n", ft_itoa_base(atoi(av[1]), atoi(av[2])));
-	return (0);
+	int i;
+
+	i = 0;
+	*sign = 1;
+	(*value < 0) ? *sign = -1 : 1;
+	(*value < 0) ? i++ : 1;
+	(*value < 0) ? *value *= -1 : 1;
+	*n = *value;
+	while (*n)
+	{
+		*n /= *base;
+		i++;
+	}
+	return (i);
 }
-*/

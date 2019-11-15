@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
 char		*ft_hitoa(short int n)
@@ -26,12 +24,9 @@ char		*ft_hitoa(short int n)
 		return (ft_strdup("32767"));
 	len = ft_numlen(n);
 	negative = 0;
-	if (n < 0)
-	{
-		len++;
-		n *= -1;
-		negative = 1;
-	}
+	(n < 0) ? len++ : 1;
+	(n < 0) ? negative = 1 : 1;
+	(n < 0) ? n *= -1 : 1;
 	if ((a = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	a[len] = '\0';
@@ -40,7 +35,6 @@ char		*ft_hitoa(short int n)
 		a[len] = n % 10 + '0';
 		n = n / 10;
 	}
-	if (negative == 1)
-		a[0] = '-';
+	(negative == 1) ? a[0] = '-' : 1;
 	return (a);
 }

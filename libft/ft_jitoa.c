@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
 char		*ft_jitoa(intmax_t n)
@@ -20,8 +18,6 @@ char		*ft_jitoa(intmax_t n)
 	char		*a;
 	int			negative;
 
-	//if (n == -2147483648)
-	//	return (ft_strdup("-2147483648"));
 	len = ft_numlen(n);
 	negative = 0;
 	if (n < 0)

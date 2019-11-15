@@ -20,30 +20,21 @@ char		*ft_ftoa(long double n)
 	char		*f_pad;
 	intmax_t	i;
 
-	n *= 10000000;
-	i = (intmax_t)n;
-	if (i % 10 >= 5)
-		i += 10;
-	if (i % 10 <= -5)
-		i -= 10;
+	i = (intmax_t)(n * 10000000);
+	(i % 10 >= 5) ? i += 10 : 1;
+	(i % 10 <= -5) ? i -= 10 : 1;
 	i /= 10;
 	n = i % 1000000;
 	i /= 1000000;
 	ip = ft_strjoin(ft_itoa(i), ".");
-	if (n < 0 && (int)i == 0)
-		ip = ft_strjoin("-", ip);
-	if (n < 0)
-		n *= -1;
+	(n < 0 && (int)i == 0) ? ip = ft_strjoin("-", ip) : "a";
+	(n < 0) ? n *= -1 : 1;
 	fp = ft_itoa(n);
 	len_f = ft_strlen(fp);
-	if (len_f < 6)
-	{
-		f_pad = ft_strnew(6 - len_f);
-		ft_memset(f_pad, '0', 6 - len_f);
-		fp = ft_strjoin(f_pad, fp);
-		ft_strdel(&f_pad);
-	}
-	//return (ft_strjoin(ip, fp));
+	(len_f < 6) ? f_pad = ft_strnew(6 - len_f) : "a";
+	(len_f < 6) ? ft_memset(f_pad, '0', 6 - len_f) : "a";
+	(len_f < 6) ? fp = ft_strjoin(f_pad, fp) : "a";
+	(len_f < 6) ? ft_strdel(&f_pad) : "a";
 	f_pad = ft_strjoin(ip, fp);
 	free(ip);
 	free(fp);

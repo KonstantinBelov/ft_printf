@@ -26,12 +26,9 @@ char		*ft_hhitoa(signed char n)
 		return (ft_strdup("127"));
 	len = ft_numlen(n);
 	negative = 0;
-	if (n < 0)
-	{
-		len++;
-		n *= -1;
-		negative = 1;
-	}
+	(n < 0) ? len++ : 1;
+	(n < 0) ? negative = 1 : 1;
+	(n < 0) ? n *= -1 : 1;
 	if ((a = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	a[len] = '\0';

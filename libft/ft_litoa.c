@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
 char		*ft_litoa(long int n)
@@ -20,19 +18,15 @@ char		*ft_litoa(long int n)
 	char		*a;
 	int			negative;
 
-	//if (n == -9223372036854775808)
 	if (n == LONG_MIN || n > LONG_MAX)
 		return (ft_strdup("-2147483648"));
 	else if (n < LONG_MIN)
 		return (ft_strdup("2147483647"));
 	len = ft_numlen(n);
 	negative = 0;
-	if (n < 0)
-	{
-		len++;
-		n *= -1;
-		negative = 1;
-	}
+	(n < 0) ? len++ : 1;
+	(n < 0) ? negative = 1 : 1;
+	(n < 0) ? n *= -1 : 1;
 	if ((a = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	a[len] = '\0';
@@ -41,8 +35,6 @@ char		*ft_litoa(long int n)
 		a[len] = n % 10 + '0';
 		n = n / 10;
 	}
-	if (negative == 1)
-		a[0] = '-';
+	(negative == 1) ? a[0] = '-' : 1;
 	return (a);
 }
-
