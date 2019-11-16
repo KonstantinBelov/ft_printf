@@ -3,3 +3,8 @@
 *.out
 .vscode
 pft/
+algo.txt
+copy.sh
+*.dSYM/*
+.gitignore
+

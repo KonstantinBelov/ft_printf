@@ -58,30 +58,24 @@ void	print_num_wide(t_format *f, int *len, int *ccnt, char **str)
 	f->null && !f->minus && (f->precision < 0) ? ft_memset(w_pad, '0',
 		f->width - *len) : ft_memset(w_pad, ' ', f->width - *len);
 	(*ccnt) += f->width;
-	if (f->minus)
-		ft_putstr(*str);
+	(f->minus) ? ft_putstr(*str) : 1;
 	if (f->minus)
 		ft_putstr(w_pad);
 	else
 	{
-		if ((*str[0] == '+' || *str[0] == '-' || *str[0] == ' ') &&
-				w_pad[0] == '0')
-		{
-			ft_putchar(*str[0]);
-			(*str)++;
-		}
+		((*str[0] == '+' || *str[0] == '-' || *str[0] == ' ') &&
+		w_pad[0] == '0') ? ft_putchar(*str[0]) : 1;
+		((*str[0] == '+' || *str[0] == '-' || *str[0] == ' ') &&
+		w_pad[0] == '0') ? (*str)++ : "a";
 		if (f->hash && f->null && ft_strcmp(*str, "0") != 0 && w_pad[0] == '0')
 			print_wide_hash(f, &w_pad, str);
 		else
-			fuck_norminette(w_pad, str);
+		{
+			ft_putstr(w_pad);
+			ft_putstr(*str);
+		}
 	}
 	ft_strdel(&w_pad);
-}
-
-void	fuck_norminette(char *w_pad, char **str)
-{
-	ft_putstr(w_pad);
-	ft_putstr(*str);
 }
 
 void	print_p(t_format *f, va_list *ap, int *charcount)

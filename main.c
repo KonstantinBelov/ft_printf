@@ -15,15 +15,15 @@
 
 int			main(void)
 {
-	int i;
+	//int i;
 	//intmax_t j;
 
-	/*
+	
 	printf("actual_1:\n");
 	ft_printf("Hello World!\n");
 	printf("expected_1\n");
 	printf("Hello World!\n");
-
+/*
 	printf("actual_2:\n");
 	ft_printf("%s", "Hello World!\n");
 	//printf("\n");
@@ -551,20 +551,58 @@ int			main(void)
 	printf("Returned value: %d", i);
 	printf("\n");
 	printf("*************************************************************\n");
-*/
 
 	printf("*************************************************************\n");
 	printf("actual_b1:\n");
-	i = ft_printf("%0+5b", 42);
+	i = ft_printf("%o", 42);
 	printf("\n");
 	printf("Returned value: %d", i);
 	printf("\n");
-	/*printf("expected_b1:\n");
-	i = printf("%0+5b", 42);
+	printf("expected_b1:\n");
+	i = printf("%o", 42);
 	printf("\n");
-	printf("Returned value: %d", i);*/
+	printf("Returned value: %d", i);
 	printf("\n");
 	printf("*************************************************************\n");
 
+	printf("*************************************************************\n");
+	printf("actual_b1:\n");
+	i = ft_printf("%b", 10);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_b1:\n");
+	i = printf("%b", 42);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+	
+	printf("*************************************************************\n");
+	printf("actual_jd:\n");
+	i = ft_printf("%jd", 9223372036854775807);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_jd:\n");
+	i = printf("%jd", 9223372036854775807);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+	
+	printf("*************************************************************\n");
+	printf("actual_ju:\n");
+	i = ft_printf("%ju", 18446744073709551615);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("expected_ju:\n");
+	i = printf("%ju", 18446744073709551615);
+	printf("\n");
+	printf("Returned value: %d", i);
+	printf("\n");
+	printf("*************************************************************\n");
+	*/
 	return (0);
 }

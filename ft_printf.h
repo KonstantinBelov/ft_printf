@@ -69,7 +69,6 @@ void			get_b_str(t_format *f, va_list *ap, char **str);
 void			apply_precision(t_format *f, int *len, char **str);
 void			add_sign(char **str, char *first, char *p_pad, int *len);
 void			print_num_wide(t_format *f, int *len, int *ccnt, char **str);
-void			fuck_norminette(char *w_pad, char **str);
 void			str_tolower(char **s);
 void			print_wide_hash(t_format *f, char **w_pad, char **str);
 double			ajust_floats_precision(double *n, t_format *f);
